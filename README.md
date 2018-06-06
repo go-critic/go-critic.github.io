@@ -1,0 +1,1 @@
+# go-critic.github.io
