@@ -6,24 +6,26 @@ Go source code linter that brings checks that are currently not implemented in o
 
 ## Checkers
 
-Name | Experimental
------|------------
-   [builtin-shadow](#builtin-shadow-ref) | false
-   [comments](#comments-ref) | false
-   [elseif](#elseif-ref) | false
-   [long-chain](#long-chain-ref) | true
-   [param-duplication](#param-duplication-ref) | false
-   [param-name](#param-name-ref) | false
-   [parenthesis](#parenthesis-ref) | false
-   [ptr-to-ref-param](#ptr-to-ref-param-ref) | false
-   [range-expr-copy](#range-expr-copy-ref) | false
-   [range-val-copy](#range-val-copy-ref) | false
-   [stddef](#stddef-ref) | false
-   [switchif](#switchif-ref) | false
-   [type-guard](#type-guard-ref) | false
-   [underef](#underef-ref) | false
-   [unexported-call](#unexported-call-ref) | false
-   [unslice](#unslice-ref) | false
+
+
+| Name | Experimental |
+|------|--------------|
+| [builtin-shadow](#builtin-shadow-ref) | false |
+| [comments](#comments-ref) | false |
+| [elseif](#elseif-ref) | false |
+| [long-chain](#long-chain-ref) | true |
+| [param-duplication](#param-duplication-ref) | false |
+| [param-name](#param-name-ref) | false |
+| [parenthesis](#parenthesis-ref) | false |
+| [ptr-to-ref-param](#ptr-to-ref-param-ref) | false |
+| [range-expr-copy](#range-expr-copy-ref) | false |
+| [range-val-copy](#range-val-copy-ref) | false |
+| [stddef](#stddef-ref) | false |
+| [switchif](#switchif-ref) | false |
+| [type-guard](#type-guard-ref) | false |
+| [underef](#underef-ref) | false |
+| [unexported-call](#unexported-call-ref) | false |
+| [unslice](#unslice-ref) | false |
 <a name="builtin-shadow-ref"></a>
 ## builtin-shadow
 Detects when
