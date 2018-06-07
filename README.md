@@ -12,7 +12,7 @@ Project goals:
 * When specific check implementation is mature and proven useful, propose it's integration into other linter
 * If good checker can't find a better home, it stays here
 
-`go-critic` is open source and free (as a beer) software, licensed under [MIT license](https://github.com/go-critic/go-critic/blob/master/LICENSE).
+`go-critic` is open source and free (as in beer) software, licensed under [MIT license](https://github.com/go-critic/go-critic/blob/master/LICENSE).
 
 ### Navigation
 
