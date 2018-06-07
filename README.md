@@ -1,6 +1,6 @@
 # go-critic
 
-The most opinionated Go source code linter
+The most opinionated Go source code linter.
 
 ### Project overview
 
