@@ -2,6 +2,8 @@
 
 The most opinionated Go source code linter.
 
+![Logo](https://avatars1.githubusercontent.com/u/40007520?s=400&u=b44287d8845a63fb0102d5259710c11ea367bb13&v=4)
+
 ### Project overview
 
 `go-critic` is a collection of checks that detect style, performance issues as well
