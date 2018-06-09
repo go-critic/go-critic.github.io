@@ -20,6 +20,7 @@ Project goals:
 
 * [User guide / usage docs](https://github.com/go-critic/go-critic#usage) - how to use `go-critic`
 * [Supported checks](/overview.md) - list of supported checks with descriptions and examples
+* [Trophies](/trophies.md) - list of contributions made thanks to `go-critic`
 * [go-critic on github](https://github.com/go-critic/go-critic) - development repository, source code
 * [Contributing to go-critic](https://github.com/go-critic/go-critic#contributing) - instructions on how to participate
 * [Report an issue / request feature](https://github.com/go-critic/go-critic/issues/new) - link to "create issue" form
