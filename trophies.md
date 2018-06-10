@@ -15,9 +15,9 @@ we have no explicit issue ticket).
 
 ### [golang/go](https://github.com/golang/go)
 
-1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `append-combine`
-1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `range-val-copy`
+1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `appendCombine`
+1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `rangeValCopy`
 
 ### [nff-go](https://github.com/intel-go/nff-go)
 
-1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `type-guard`
+1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeGuard`
