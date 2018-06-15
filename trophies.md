@@ -20,4 +20,4 @@ we have no explicit issue ticket).
 
 ### [nff-go](https://github.com/intel-go/nff-go)
 
-1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeGuard`
+1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeSwitchVar`, `paramTypeCombine`
