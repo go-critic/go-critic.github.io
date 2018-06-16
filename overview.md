@@ -9,60 +9,83 @@ Go source code linter that brings checks that are currently not implemented in o
 <table>
   <tr>
     <th>Name</th>
+    <th>Kind</th>
   </tr>
       <tr>
         <td><a href="#appendCombine-ref">appendCombine</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#builtinShadow-ref">builtinShadow</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#captLocal-ref">captLocal</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#docStub-ref">docStub</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#elseif-ref">elseif</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#flagDeref-ref">flagDeref</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#paramTypeCombine-ref">paramTypeCombine</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#ptrToRefParam-ref">ptrToRefParam</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#rangeExprCopy-ref">rangeExprCopy</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#rangeValCopy-ref">rangeValCopy</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#singleCaseSwitch-ref">singleCaseSwitch</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#stdExpr-ref">stdExpr</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#switchTrue-ref">switchTrue</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#typeSwitchVar-ref">typeSwitchVar</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#typeUnparen-ref">typeUnparen</a></td>
+        <td>syntax-only check (fast)</td>
       </tr>
       <tr>
         <td><a href="#underef-ref">underef</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#unexportedCall-ref">unexportedCall</a></td>
+        <td>type-aware check</td>
+      </tr>
+      <tr>
+        <td><a href="#unnamedResult-ref">unnamedResult</a></td>
+        <td>type-aware check</td>
       </tr>
       <tr>
         <td><a href="#unslice-ref">unslice</a></td>
+        <td>type-aware check</td>
       </tr>
 </table>
 
@@ -76,7 +99,6 @@ Go source code linter that brings checks that are currently not implemented in o
         <td><a href="#longChain-ref">longChain</a></td>
       </tr>
 </table>
-
 
 
 
@@ -95,8 +117,6 @@ xs = append(xs, 2)
 ```go
 xs = append(xs, 1, 2)
 ```
-
-
 
 
 <a name="builtinShadow-ref"></a>
@@ -124,8 +144,6 @@ func main() {
 ```
 
 
-
-
 <a name="captLocal-ref"></a>
 ## captLocal
 Detects potential issues in function parameter names.
@@ -142,8 +160,6 @@ func f(IN int, OUT *int) (ERR error) {}
 ```go
 func f(in int, out *int) (err error) {}
 ```
-
-
 
 
 <a name="docStub-ref"></a>
@@ -168,8 +184,6 @@ func Foo() {
 
 > You can either remove a comment to let go lint find it or change stub to useful comment.
 > This checker makes it easier to detect stubs, the action is up to you.
-
-
 
 
 <a name="elseif-ref"></a>
@@ -203,8 +217,6 @@ default:
 ```
 
 
-
-
 <a name="flagDeref-ref"></a>
 ## flagDeref
 Detects immediate dereferencing of `flag` package pointers.
@@ -225,10 +237,6 @@ flag.BoolVar(&b, "b", false, "b docs")
 > where flag values are not updated after flag.Parse().
 
 
-
-
-
-
 <a name="paramTypeCombine-ref"></a>
 ## paramTypeCombine
 Detects if function parameters could be combined by type and suggest the way to do it.
@@ -242,8 +250,6 @@ func foo(a, b int, c, d int, e, f int, g int) {}
 ```go
 func foo(a, b, c, d, e, f, g int) {}
 ```
-
-
 
 
 <a name="ptrToRefParam-ref"></a>
@@ -262,8 +268,6 @@ func f(m map[string]int) (ch chan *int)
 
 > Slices are not as referential as maps or channels, but it's usually
 > better to return them by value rather than modyfing them by pointer.
-
-
 
 
 <a name="rangeExprCopy-ref"></a>
@@ -290,8 +294,6 @@ for _, x := range &xs {
 ```
 
 
-
-
 <a name="rangeValCopy-ref"></a>
 ## rangeValCopy
 Detects loops that copy big objects during each iteration.
@@ -315,8 +317,6 @@ for i := range xs {
 ```
 
 
-
-
 <a name="singleCaseSwitch-ref"></a>
 ## singleCaseSwitch
 Detects switch statements that could be better written as if statements.
@@ -337,8 +337,6 @@ if x, ok := x.(int); ok {
 ```
 
 
-
-
 <a name="stdExpr-ref"></a>
 ## stdExpr
 Detects constant expressions that can be replaced by a named constant
@@ -355,8 +353,6 @@ maxVal := 1<<7 - 1
 intBytes := make([]byte, bits.IntSize)
 maxVal := math.MaxInt8
 ```
-
-
 
 
 <a name="switchTrue-ref"></a>
@@ -378,8 +374,6 @@ case x > y:
 	// ...
 }
 ```
-
-
 
 
 <a name="typeSwitchVar-ref"></a>
@@ -411,8 +405,6 @@ default:
 ```
 
 
-
-
 <a name="typeUnparen-ref"></a>
 ## typeUnparen
 Detects unneded parenthesis inside type expressions and suggests to remove them.
@@ -433,8 +425,6 @@ func foo() []func([]func()) {
 
 
 
-
-
 <a name="underef-ref"></a>
 ## underef
 Detects expressions with C style field selection and suggest Go style correction.
@@ -450,8 +440,6 @@ _ := (*a)[5] // only if a is array
 k.field = 5
 _ := a[5]
 ```
-
-
 
 
 <a name="unexportedCall-ref"></a>
@@ -482,6 +470,20 @@ func baz() {
 ```
 
 
+<a name="unnamedResult-ref"></a>
+## unnamedResult
+For functions with multiple return values, detects unnamed results
+that do not match `(T, error)` or `(T, bool)` pattern.
+
+**Before:**
+```go
+func f() (float64, float64)
+```
+
+**After:**
+```go
+func f() (x, y float64)
+```
 
 
 <a name="unslice-ref"></a>
@@ -499,22 +501,6 @@ copy(b[:], values...) // b is []byte
 f(s)
 copy(b, values...)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <a name="longChain-ref"></a>
@@ -543,29 +529,4 @@ v := (a+x) + (b+x) + (c+x)
 
 Gives false-positives for:
 * Cases with re-assignment. See `$GOROOT/src/crypto/md5/md5block.go` for example.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
