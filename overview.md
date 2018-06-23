@@ -123,6 +123,18 @@ Go source code linter that brings checks that are currently not implemented in o
 </td>
       </tr>
       <tr>
+        <td><a href="#dupCase-ref">dupCase</a></td>
+        <td>Detects duplicated case clauses inside switch statements.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#evalOrder-ref">evalOrder</a></td>
+        <td>Detects potentially unsafe dependencies on evaluation order.
+
+</td>
+      </tr>
+      <tr>
         <td><a href="#importShadow-ref">importShadow</a></td>
         <td>Detects when imported package names shadowed in assignments.
 
@@ -137,6 +149,12 @@ Go source code linter that brings checks that are currently not implemented in o
       <tr>
         <td><a href="#ptrToRefParam-ref">ptrToRefParam</a></td>
         <td>Detects input and output parameters that have a type of pointer to referential type.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#regexpMust-ref">regexpMust</a></td>
+        <td>Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`.
 
 </td>
       </tr>
@@ -299,7 +317,30 @@ func Foo() {
 > You can either remove a comment to let go lint find it or change stub to useful comment.
 > This checker makes it easier to detect stubs, the action is up to you.
 
-`docStub` is syntax-only checker (fast).<a name="elseif-ref"></a>
+`docStub` is syntax-only checker (fast).<a name="dupCase-ref"></a>
+## dupCase
+Detects duplicated case clauses inside switch statements.
+
+
+
+**Before:**
+```go
+switch x {
+case ys[0], ys[1], ys[2], ys[0], ys[4]:
+}
+
+```
+
+**After:**
+```go
+switch x {
+case ys[0], ys[1], ys[2], ys[3], ys[4]:
+}
+
+```
+
+
+<a name="elseif-ref"></a>
 ## elseif
 Detects repeated if-else statements and suggests to replace them with switch statement.
 
@@ -333,7 +374,31 @@ default:
 ```
 
 
-`elseif` is syntax-only checker (fast).<a name="flagDeref-ref"></a>
+`elseif` is syntax-only checker (fast).<a name="evalOrder-ref"></a>
+## evalOrder
+Detects potentially unsafe dependencies on evaluation order.
+
+
+
+**Before:**
+```go
+return mayModifySlice(&xs), xs[0]
+
+```
+
+**After:**
+```go
+// A)
+v := mayModifySlice(&xs)
+return v, xs[0]
+// B)
+v := xs[0]
+return mayModifySlice(&xs), v
+
+```
+
+
+<a name="flagDeref-ref"></a>
 ## flagDeref
 Detects immediate dereferencing of `flag` package pointers.
 
@@ -507,6 +572,25 @@ for i := range xs {
 	x := &xs[i]
 	// Loop body.
 }
+
+```
+
+
+<a name="regexpMust-ref"></a>
+## regexpMust
+Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`.
+
+
+
+**Before:**
+```go
+re, _ := regexp.Compile(`const pattern`)
+
+```
+
+**After:**
+```go
+re := regexp.MustCompile(`const pattern`)
 
 ```
 
