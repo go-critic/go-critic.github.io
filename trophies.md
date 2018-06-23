@@ -13,10 +13,20 @@ If commit exist, it should be referenced instead of issue.
 If issue exist, is should be referenced (as opposed of 3 where
 we have no explicit issue ticket).
 
+This page exists mostly to determine most useful checks that can trigger on real projects.
+These checks are a good candidates to be included into "default" `go-critic` list.
+
+Most projects listed here have high base code quality, so every detected issue counts.
+
 ### [golang/go](https://github.com/golang/go)
 
 1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `appendCombine`
 1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `rangeValCopy`
+
+### [mvdan/sh](https://github.com/mvdan/sh)
+
+1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
+1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
 
 ### [nff-go](https://github.com/intel-go/nff-go)
 
