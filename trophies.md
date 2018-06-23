@@ -27,6 +27,7 @@ Most projects listed here have high base code quality, so every detected issue c
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
 1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
+1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `elseif`
 
 ### [nff-go](https://github.com/intel-go/nff-go)
 
