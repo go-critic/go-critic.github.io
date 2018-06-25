@@ -29,6 +29,10 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
 1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `elseif`
 
-### [nff-go](https://github.com/intel-go/nff-go)
+### [rumyantseva/go-zeroservice](https://github.com/rumyantseva/go-zeroservice)
+
+1. [app.go: rename unused param to `_`](https://github.com/rumyantseva/go-zeroservice/pull/3) `unusedParam`
+
+### [intel-go/nff-go](https://github.com/intel-go/nff-go)
 
 1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeSwitchVar`, `paramTypeCombine`
