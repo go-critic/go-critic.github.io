@@ -23,6 +23,10 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `appendCombine`
 1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `rangeValCopy`
 
+### [upspin/upspin](https://github.com/upspin/upspin)
+
+1. [pack/internal/packtest: remove redundant parens in type conv ](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76)
+
 ### [mvdan/sh](https://github.com/mvdan/sh)
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
