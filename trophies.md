@@ -25,7 +25,7 @@ Most projects listed here have high base code quality, so every detected issue c
 
 ### [upspin/upspin](https://github.com/upspin/upspin)
 
-1. [pack/internal/packtest: remove redundant parens in type conv ](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76)
+1. [pack/internal/packtest: remove redundant parens in type conv ](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76) `typeUnparen`
 
 ### [mvdan/sh](https://github.com/mvdan/sh)
 
