@@ -123,6 +123,18 @@ Go source code linter that brings checks that are currently not implemented in o
 </td>
       </tr>
       <tr>
+        <td><a href="#commentedOutCode-ref">commentedOutCode</a></td>
+        <td>Detects commented-out code inside function bodies.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#deferInLoop-ref">deferInLoop</a></td>
+        <td>Detects defer in loop and warns that it will not be executed till the end of function's scope.
+
+</td>
+      </tr>
+      <tr>
         <td><a href="#docStub-ref">docStub</a></td>
         <td>Detects comments that silence go lint complaints about doc-comment.
 
@@ -219,7 +231,6 @@ Detects suspicious append result assignments.
 ```go
 p.positives = append(p.negatives, x)
 p.negatives = append(p.negatives, y)
-
 ```
 
 **After:**
@@ -240,7 +251,6 @@ Detects `append` chains to the same slice that can be done in a single `append` 
 ```go
 xs = append(xs, 1)
 xs = append(xs, 2)
-
 ```
 
 **After:**
@@ -259,7 +269,6 @@ Detects function returning only bool and suggests to add Is/Has/Contains prefix 
 **Before:**
 ```go
 func Enabled() bool
-
 ```
 
 **After:**
@@ -279,7 +288,6 @@ Detects bool expressions that can be simplified.
 ```go
 a := !(elapsed >= expectElapsedMin)
 b := !(x) == !(y)
-
 ```
 
 **After:**
@@ -303,7 +311,6 @@ func main() {
     len := 10
     println(len)
 }
-
 ```
 
 **After:**
@@ -326,7 +333,6 @@ Detects capitalized names for local variables.
 **Before:**
 ```go
 func f(IN int, OUT *int) (ERR error) {}
-
 ```
 
 **After:**
@@ -336,7 +342,50 @@ func f(in int, out *int) (err error) {}
 ```
 
 
-`captLocal` is syntax-only checker (fast).<a name="docStub-ref"></a>
+`captLocal` is syntax-only checker (fast).<a name="commentedOutCode-ref"></a>
+## commentedOutCode
+Detects commented-out code inside function bodies.
+
+
+
+**Before:**
+```go
+// fmt.Println("Debugging hard")
+foo(1, 2)
+```
+
+**After:**
+```go
+foo(1, 2)
+
+```
+
+
+<a name="deferInLoop-ref"></a>
+## deferInLoop
+Detects defer in loop and warns that it will not be executed till the end of function's scope.
+
+
+
+**Before:**
+```go
+for i := range [10]int{} {
+	defer f(i) // will be executed only at the end of func
+}
+```
+
+**After:**
+```go
+for i := range [10]int{} {
+	func(i int) {
+		defer f(i)
+	}(i)
+}
+
+```
+
+
+<a name="docStub-ref"></a>
 ## docStub
 Detects comments that silence go lint complaints about doc-comment.
 
@@ -348,7 +397,6 @@ Detects comments that silence go lint complaints about doc-comment.
 func Foo() {
      // ...
 }
-
 ```
 
 **After:**
@@ -373,7 +421,6 @@ Detects duplicated case clauses inside switch statements.
 switch x {
 case ys[0], ys[1], ys[2], ys[0], ys[4]:
 }
-
 ```
 
 **After:**
@@ -402,7 +449,6 @@ if cond1 {
 } else {
 	// Code C.
 }
-
 ```
 
 **After:**
@@ -429,7 +475,6 @@ Detects usages of formatting functions without formatting arguments.
 ```go
 fmt.Sprintf("whatever")
 fmt.Errorf("wherever")
-
 ```
 
 **After:**
@@ -449,7 +494,6 @@ Detects potentially unsafe dependencies on evaluation order.
 **Before:**
 ```go
 return mayModifySlice(&xs), xs[0]
-
 ```
 
 **After:**
@@ -473,7 +517,6 @@ Detects immediate dereferencing of `flag` package pointers.
 **Before:**
 ```go
 b := *flag.Bool("b", false, "b docs")
-
 ```
 
 **After:**
@@ -504,7 +547,6 @@ func main() {
     math := 10
     fmt.Println(len)
 }
-
 ```
 
 **After:**
@@ -535,7 +577,6 @@ a := q.w.e.r.t + 1
 b := q.w.e.r.t + 2
 c := q.w.e.r.t + 3
 v := (a+xs[i+1]) + (b+xs[i+1]) + (c+xs[i+1])
-
 ```
 
 **After:**
@@ -560,7 +601,6 @@ Detects literals that can be replaced with defined named const.
 ```go
 // pos has type of token.Pos.
 if pos != 0 {}
-
 ```
 
 **After:**
@@ -579,7 +619,6 @@ Detects if function parameters could be combined by type and suggest the way to 
 **Before:**
 ```go
 func foo(a, b int, c, d int, e, f int, g int) {}
-
 ```
 
 **After:**
@@ -598,7 +637,6 @@ Detects input and output parameters that have a type of pointer to referential t
 **Before:**
 ```go
 func f(m *map[string]int) (ch *chan *int)
-
 ```
 
 **After:**
@@ -623,7 +661,6 @@ var xs [256]byte
 for _, x := range xs {
 	// Loop body.
 }
-
 ```
 
 **After:**
@@ -648,7 +685,6 @@ xs := make([][1024]byte, length)
 for _, x := range xs {
 	// Loop body.
 }
-
 ```
 
 **After:**
@@ -671,7 +707,6 @@ Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`.
 **Before:**
 ```go
 re, _ := regexp.Compile(`const pattern`)
-
 ```
 
 **After:**
@@ -693,7 +728,6 @@ switch x := x.(type) {
 case int:
      ...
 }
-
 ```
 
 **After:**
@@ -715,7 +749,6 @@ Detects constant expressions that can be replaced by a named constant
 ```go
 intBytes := make([]byte, unsafe.Sizeof(0))
 maxVal := 1<<7 - 1
-
 ```
 
 **After:**
@@ -738,7 +771,6 @@ switch true {
 case x > y:
 	// ...
 }
-
 ```
 
 **After:**
@@ -767,7 +799,6 @@ case point:
 default:
 	return 0
 }
-
 ```
 
 **After:**
@@ -795,7 +826,6 @@ Detects unneded parenthesis inside type expressions and suggests to remove them.
 func foo() [](func([](func()))) {
      ...
 }
-
 ```
 
 **After:**
@@ -817,7 +847,6 @@ Detects dereference expressions that can be omitted.
 ```go
 (*k).field = 5
 _ := (*a)[5] // only if a is array
-
 ```
 
 **After:**
@@ -842,7 +871,6 @@ func baz() {
 	var fo foo
 	fo.bar()
 }
-
 ```
 
 **After:**
@@ -866,7 +894,6 @@ For functions with multiple return values, detects unnamed results
 **Before:**
 ```go
 func f() (float64, float64)
-
 ```
 
 **After:**
@@ -886,7 +913,6 @@ Detects slice expressions that can be simplified to sliced expression itself.
 ```go
 f(s[:]) // s is string
 copy(b[:], values...) // b is []byte
-
 ```
 
 **After:**
@@ -906,7 +932,6 @@ Detects unused params and suggests to name them as `_` (underscore).
 **Before:**
 ```go
 func f(a int, b float64) // b isn't used inside function body
-
 ```
 
 **After:**
@@ -925,7 +950,6 @@ Detects Yoda style expressions that suggest to replace them.
 **Before:**
 ```go
 if nil != ptr {}
-
 ```
 
 **After:**
