@@ -243,7 +243,6 @@ p.negatives = append(p.negatives, y)
 ```go
 p.positives = append(p.positives, x)
 p.negatives = append(p.negatives, y)
-
 ```
 
 
@@ -262,7 +261,6 @@ xs = append(xs, 2)
 **After:**
 ```go
 xs = append(xs, 1, 2)
-
 ```
 
 
@@ -280,7 +278,6 @@ func Enabled() bool
 **After:**
 ```go
 func IsEnabled() bool
-
 ```
 
 
@@ -300,7 +297,6 @@ b := !(x) == !(y)
 ```go
 a := elapsed < expectElapsedMin
 b := (x) == (y)
-
 ```
 
 
@@ -326,7 +322,6 @@ func main() {
     length := 10
     println(length)
 }
-
 ```
 
 
@@ -344,7 +339,6 @@ func f(IN int, OUT *int) (ERR error) {}
 **After:**
 ```go
 func f(in int, out *int) (err error) {}
-
 ```
 
 
@@ -372,7 +366,6 @@ case *ast.BasicLit:
 case ast.Expr:
 	fmt.Println("expr")
 }
-
 ```
 
 
@@ -391,7 +384,6 @@ foo(1, 2)
 **After:**
 ```go
 foo(1, 2)
-
 ```
 
 
@@ -415,7 +407,6 @@ for i := range [10]int{} {
 		defer f(i)
 	}(i)
 }
-
 ```
 
 
@@ -438,7 +429,6 @@ func Foo() {
 func Foo() {
      // ...
 }
-
 ```
 
 > You can either remove a comment to let go lint find it or change stub to useful comment.
@@ -462,7 +452,6 @@ case ys[0], ys[1], ys[2], ys[0], ys[4]:
 switch x {
 case ys[0], ys[1], ys[2], ys[3], ys[4]:
 }
-
 ```
 
 
@@ -495,7 +484,6 @@ case cond2:
 default:
 	// Code C.
 }
-
 ```
 
 
@@ -515,7 +503,6 @@ fmt.Errorf("wherever")
 ```go
 fmt.Sprint("whatever")
 errors.New("wherever")
-
 ```
 
 
@@ -538,7 +525,6 @@ return v, xs[0]
 // B)
 v := xs[0]
 return mayModifySlice(&xs), v
-
 ```
 
 
@@ -557,7 +543,6 @@ b := *flag.Bool("b", false, "b docs")
 ```go
 var b bool
 flag.BoolVar(&b, "b", false, "b docs")
-
 ```
 
 > Dereferencing returned pointers will lead to hard to find errors
@@ -595,7 +580,6 @@ func main() {
     value := 10
     fmt.Println(value)
 }
-
 ```
 
 
@@ -621,7 +605,6 @@ a := qwert + 1
 b := qwert + 2
 c := qwert + 3
 v := (a+x) + (b+x) + (c+x)
-
 ```
 
 
@@ -640,7 +623,6 @@ if pos != 0 {}
 **After:**
 ```go
 if pos != token.NoPos {}
-
 ```
 
 
@@ -658,7 +640,6 @@ func foo(a, b int, c, d int, e, f int, g int) {}
 **After:**
 ```go
 func foo(a, b, c, d, e, f, g int) {}
-
 ```
 
 
@@ -676,7 +657,6 @@ func f(m *map[string]int) (ch *chan *int)
 **After:**
 ```go
 func f(m map[string]int) (ch chan *int)
-
 ```
 
 > Slices are not as referential as maps or channels, but it's usually
@@ -703,7 +683,6 @@ var xs [256]byte
 for _, x := range &xs {
 	// Loop body.
 }
-
 ```
 
 
@@ -728,7 +707,6 @@ for i := range xs {
 	x := &xs[i]
 	// Loop body.
 }
-
 ```
 
 
@@ -746,7 +724,6 @@ re, _ := regexp.Compile(`const pattern`)
 **After:**
 ```go
 re := regexp.MustCompile(`const pattern`)
-
 ```
 
 
@@ -769,7 +746,6 @@ case int:
 if x, ok := x.(int); ok {
    ...
 }
-
 ```
 
 
@@ -789,7 +765,6 @@ maxVal := 1<<7 - 1
 ```go
 intBytes := make([]byte, bits.IntSize)
 maxVal := math.MaxInt8
-
 ```
 
 
@@ -813,7 +788,6 @@ switch {
 case x > y:
 	// ...
 }
-
 ```
 
 
@@ -845,7 +819,6 @@ case point:
 default:
 	return 0
 }
-
 ```
 
 
@@ -867,7 +840,6 @@ func foo() [](func([](func()))) {
 func foo() []func([]func()) {
      ...
 }
-
 ```
 
 
@@ -887,7 +859,6 @@ _ := (*a)[5] // only if a is array
 ```go
 k.field = 5
 _ := a[5]
-
 ```
 
 
@@ -915,7 +886,6 @@ func baz() {
 	var fo foo
 	fo.Bar()
 }
-
 ```
 
 
@@ -933,7 +903,6 @@ func f() (float64, float64)
 **After:**
 ```go
 func f() (x, y float64)
-
 ```
 
 
@@ -953,7 +922,6 @@ copy(b[:], values...) // b is []byte
 ```go
 f(s)
 copy(b, values...)
-
 ```
 
 
@@ -971,7 +939,6 @@ func f(a int, b float64) // b isn't used inside function body
 **After:**
 ```go
 func f(a int, _ float64) // everything is cool
-
 ```
 
 
@@ -989,7 +956,6 @@ if nil != ptr {}
 **After:**
 ```go
 if ptr != nil {}
-
 ```
 
 
