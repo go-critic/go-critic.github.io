@@ -2,6 +2,8 @@
 
 This page describes checks supported by [go-critic](https://github.com/go-critic/go-critic) linter.
 
+[//]: # (This is generated file, please don't edit it yourself.)
+
 ## Checkers:
 
 <table>
