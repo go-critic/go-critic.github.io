@@ -1,6 +1,4 @@
-[//]: # (This is generated file, please don't edit it yourself.)
-
-# go-critic checks overview
+# Checks overview
 
 This page describes checks supported by [go-critic](https://github.com/go-critic/go-critic) linter.
 
