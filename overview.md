@@ -30,14 +30,14 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 </td>
       </tr>
       <tr>
-        <td><a href="#elseif-ref">elseif</a></td>
-        <td>Detects repeated if-else statements and suggests to replace them with switch statement.
+        <td><a href="#flagDeref-ref">flagDeref</a></td>
+        <td>Detects immediate dereferencing of `flag` package pointers.
 
 </td>
       </tr>
       <tr>
-        <td><a href="#flagDeref-ref">flagDeref</a></td>
-        <td>Detects immediate dereferencing of `flag` package pointers.
+        <td><a href="#ifElseChain-ref">ifElseChain</a></td>
+        <td>Detects repeated if-else statements and suggests to replace them with switch statement.
 
 </td>
       </tr>
@@ -153,6 +153,12 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 </td>
       </tr>
       <tr>
+        <td><a href="#elseif-ref">elseif</a> &#x1f913</td>
+        <td>Detects else with nested if statement that can be replaced with else-if.
+
+</td>
+      </tr>
+      <tr>
         <td><a href="#emptyFmt-ref">emptyFmt</a></td>
         <td>Detects usages of formatting functions without formatting arguments.
 
@@ -167,6 +173,12 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#importShadow-ref">importShadow</a></td>
         <td>Detects when imported package names shadowed in assignments.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#indexOnlyLoop-ref">indexOnlyLoop</a></td>
+        <td>Detects for loops that can benefit from rewrite to range loop.
 
 </td>
       </tr>
@@ -315,18 +327,18 @@ Detects when predeclared identifiers shadowed in assignments.
 **Before:**
 ```go
 func main() {
-    // shadowing len function
-    len := 10
-    println(len)
+	// shadowing len function
+	len := 10
+	println(len)
 }
 ```
 
 **After:**
 ```go
 func main() {
-    // change identificator name
-    length := 10
-    println(length)
+	// change identificator name
+	length := 10
+	println(length)
 }
 ```
 
@@ -426,14 +438,12 @@ Detects comments that silence go lint complaints about doc-comment.
 ```go
 // Foo ...
 func Foo() {
-     // ...
 }
 ```
 
 **After:**
 ```go
 func Foo() {
-     // ...
 }
 ```
 
@@ -463,37 +473,28 @@ case ys[0], ys[1], ys[2], ys[3], ys[4]:
 
 <a name="elseif-ref"></a>
 ## elseif
-Detects repeated if-else statements and suggests to replace them with switch statement.
+Detects else with nested if statement that can be replaced with else-if.
 
-Permits single else or else-if; repeated else-if or else + else-if
-will trigger suggestion to use switch statement.
 
 
 **Before:**
 ```go
 if cond1 {
-	// Code A.
-} else if cond2 {
-	// Code B.
 } else {
-	// Code C.
+	if x := cond2; x {
+	}
 }
 ```
 
 **After:**
 ```go
-switch {
-case cond1:
-	// Code A.
-case cond2:
-	// Code B.
-default:
-	// Code C.
+if cond1 {
+} else if x := cond2; x {
 }
 ```
 
 
-`elseif` is syntax-only checker (fast).<a name="emptyFmt-ref"></a>
+`elseif` is very opinionated.<a name="emptyFmt-ref"></a>
 ## emptyFmt
 Detects usages of formatting functions without formatting arguments.
 
@@ -554,7 +555,39 @@ flag.BoolVar(&b, "b", false, "b docs")
 > Dereferencing returned pointers will lead to hard to find errors
 > where flag values are not updated after flag.Parse().
 
-`flagDeref` is syntax-only checker (fast).<a name="importShadow-ref"></a>
+`flagDeref` is syntax-only checker (fast).<a name="ifElseChain-ref"></a>
+## ifElseChain
+Detects repeated if-else statements and suggests to replace them with switch statement.
+
+Permits single else or else-if; repeated else-if or else + else-if
+will trigger suggestion to use switch statement.
+
+
+**Before:**
+```go
+if cond1 {
+	// Code A.
+} else if cond2 {
+	// Code B.
+} else {
+	// Code C.
+}
+```
+
+**After:**
+```go
+switch {
+case cond1:
+	// Code A.
+case cond2:
+	// Code B.
+default:
+	// Code C.
+}
+```
+
+
+`ifElseChain` is syntax-only checker (fast).<a name="importShadow-ref"></a>
 ## importShadow
 Detects when imported package names shadowed in assignments.
 
@@ -562,29 +595,40 @@ Detects when imported package names shadowed in assignments.
 
 **Before:**
 ```go
-import (
-    "fmt"
-    "math"
-)
-func main() {
-    fmt.Println(math.Pi)
-    // shadowing math package
-    math := 10
-    fmt.Println(len)
+// "path/filepath" is imported.
+func myFunc(filepath string) {
 }
 ```
 
 **After:**
 ```go
-import (
-    "fmt"
-    "math"
-)
-func main() {
-    fmt.Println(math.Pi)
-    // change identificator name
-    value := 10
-    fmt.Println(value)
+func myFunc(filename string) {
+}
+```
+
+
+<a name="indexOnlyLoop-ref"></a>
+## indexOnlyLoop
+Detects for loops that can benefit from rewrite to range loop.
+
+Suggests to use for key, v := range container form.
+
+
+**Before:**
+```go
+for i := range files {
+	if files[i] != nil {
+		files[i].Close()
+	}
+}
+```
+
+**After:**
+```go
+for _, f := range files {
+	if f != nil {
+		f.Close()
+	}
 }
 ```
 
@@ -600,7 +644,7 @@ Detects repeated expression chains and suggest to refactor them.
 a := q.w.e.r.t + 1
 b := q.w.e.r.t + 2
 c := q.w.e.r.t + 3
-v := (a+xs[i+1]) + (b+xs[i+1]) + (c+xs[i+1])
+v := (a + xs[i+1]) + (b + xs[i+1]) + (c + xs[i+1])
 ```
 
 **After:**
@@ -610,7 +654,7 @@ qwert := q.w.e.r.t
 a := qwert + 1
 b := qwert + 2
 c := qwert + 3
-v := (a+x) + (b+x) + (c+x)
+v := (a + x) + (b + x) + (c + x)
 ```
 
 
@@ -623,12 +667,12 @@ Detects literals that can be replaced with defined named const.
 **Before:**
 ```go
 // pos has type of token.Pos.
-if pos != 0 {}
+return pos != 0
 ```
 
 **After:**
 ```go
-if pos != token.NoPos {}
+return pos != token.NoPos
 ```
 
 
@@ -641,19 +685,19 @@ Finds where nesting level could be reduced.
 **Before:**
 ```go
 for _, v := range a {
-   if v.Bool {
-       ...
-   }
+	if v.Bool {
+		body()
+	}
 }
 ```
 
 **After:**
 ```go
 for _, v := range a {
-   if ! v.Bool {
-       continue
-   }
-   ...
+	if !v.Bool {
+		continue
+	}
+	body()
 }
 ```
 
@@ -769,14 +813,14 @@ Detects switch statements that could be better written as if statements.
 ```go
 switch x := x.(type) {
 case int:
-     ...
+	body()
 }
 ```
 
 **After:**
 ```go
 if x, ok := x.(int); ok {
-   ...
+	body()
 }
 ```
 
@@ -862,16 +906,12 @@ Detects unneded parenthesis inside type expressions and suggests to remove them.
 
 **Before:**
 ```go
-func foo() [](func([](func()))) {
-     ...
-}
+type foo [](func([](func())))
 ```
 
 **After:**
 ```go
-func foo() []func([]func()) {
-     ...
-}
+type foo []func([]func())
 ```
 
 
@@ -902,21 +942,15 @@ Detects calls of unexported method from unexported type outside that type.
 
 **Before:**
 ```go
-type foo struct{}
-func (f foo) bar() int { return 1 }
-func baz() {
-	var fo foo
+func baz(f foo) {
 	fo.bar()
 }
 ```
 
 **After:**
 ```go
-type foo struct{}
-func (f foo) Bar() int { return 1 } // now Bar is exported
-func baz() {
-	var fo foo
-	fo.Bar()
+func baz(f foo) {
+	fo.Bar() // Made method exported
 }
 ```
 
@@ -946,7 +980,7 @@ Detects slice expressions that can be simplified to sliced expression itself.
 
 **Before:**
 ```go
-f(s[:]) // s is string
+f(s[:])               // s is string
 copy(b[:], values...) // b is []byte
 ```
 
@@ -982,12 +1016,12 @@ Detects Yoda style expressions that suggest to replace them.
 
 **Before:**
 ```go
-if nil != ptr {}
+return nil != ptr
 ```
 
 **After:**
 ```go
-if ptr != nil {}
+return ptr != nil
 ```
 
 
