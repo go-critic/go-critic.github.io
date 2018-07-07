@@ -31,7 +31,7 @@ Most projects listed here have high base code quality, so every detected issue c
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
 1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
-1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `elseif`
+1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `ifElseChain`
 
 ### [rumyantseva/go-zeroservice](https://github.com/rumyantseva/go-zeroservice)
 
@@ -40,3 +40,7 @@ Most projects listed here have high base code quality, so every detected issue c
 ### [intel-go/nff-go](https://github.com/intel-go/nff-go)
 
 1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeSwitchVar`, `paramTypeCombine`
+
+### [afiskon/go-elector](https://github.com/afiskon/go-elector)
+
+1. [minor style fixes](https://github.com/afiskon/go-elector/pull/1) `ifElseChain`, `stdExpr`, `paramTypeCombine`
