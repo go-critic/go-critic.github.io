@@ -22,6 +22,7 @@ Most projects listed here have high base code quality, so every detected issue c
 
 1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `appendCombine`
 1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `rangeValCopy`
+1. [cmd/compile/internal/ssa: fix partsByVarOffset.Less method](https://golang.org/cl/122776) `dupSubExpr`
 
 ### [upspin/upspin](https://github.com/upspin/upspin)
 
