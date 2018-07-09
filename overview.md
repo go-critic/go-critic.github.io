@@ -147,8 +147,20 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 </td>
       </tr>
       <tr>
+        <td><a href="#dupBranchBody-ref">dupBranchBody</a></td>
+        <td>Detects duplicated branch bodies inside conditional statements.
+
+</td>
+      </tr>
+      <tr>
         <td><a href="#dupCase-ref">dupCase</a></td>
         <td>Detects duplicated case clauses inside switch statements.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#dupSubExpr-ref">dupSubExpr</a></td>
+        <td>Detects suspicious duplicated sub-expressions.
 
 </td>
       </tr>
@@ -167,6 +179,12 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#evalOrder-ref">evalOrder</a></td>
         <td>Detects potentially unsafe dependencies on evaluation order.
+
+</td>
+      </tr>
+      <tr>
+        <td><a href="#hugeParam-ref">hugeParam</a></td>
+        <td>Detects params that incur excessive amount of copying.
 
 </td>
       </tr>
@@ -450,7 +468,32 @@ func Foo() {
 > You can either remove a comment to let go lint find it or change stub to useful comment.
 > This checker makes it easier to detect stubs, the action is up to you.
 
-`docStub` is syntax-only checker (fast).<a name="dupCase-ref"></a>
+`docStub` is syntax-only checker (fast).<a name="dupBranchBody-ref"></a>
+## dupBranchBody
+Detects duplicated branch bodies inside conditional statements.
+
+
+
+**Before:**
+```go
+if cond {
+	println("cond=true")
+} else {
+	println("cond=true")
+}
+```
+
+**After:**
+```go
+if cond {
+	println("cond=true")
+} else {
+	println("cond=false")
+}
+```
+
+
+<a name="dupCase-ref"></a>
 ## dupCase
 Detects duplicated case clauses inside switch statements.
 
@@ -468,6 +511,27 @@ case ys[0], ys[1], ys[2], ys[0], ys[4]:
 switch x {
 case ys[0], ys[1], ys[2], ys[3], ys[4]:
 }
+```
+
+
+<a name="dupSubExpr-ref"></a>
+## dupSubExpr
+Detects suspicious duplicated sub-expressions.
+
+
+
+**Before:**
+```go
+sort.Slice(xs, func(i, j int) bool {
+	return xs[i].v < xs[i].v // Same index
+})
+```
+
+**After:**
+```go
+sort.Slice(xs, func(i, j int) bool {
+	return xs[i].v < xs[j].v // Different index
+})
 ```
 
 
@@ -555,7 +619,24 @@ flag.BoolVar(&b, "b", false, "b docs")
 > Dereferencing returned pointers will lead to hard to find errors
 > where flag values are not updated after flag.Parse().
 
-`flagDeref` is syntax-only checker (fast).<a name="ifElseChain-ref"></a>
+`flagDeref` is syntax-only checker (fast).<a name="hugeParam-ref"></a>
+## hugeParam
+Detects params that incur excessive amount of copying.
+
+
+
+**Before:**
+```go
+func f(x [1024]int) {}
+```
+
+**After:**
+```go
+func f(x *[1024]int) {}
+```
+
+
+<a name="ifElseChain-ref"></a>
 ## ifElseChain
 Detects repeated if-else statements and suggests to replace them with switch statement.
 
