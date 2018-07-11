@@ -25,6 +25,11 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [cmd/compile/internal/ssa: fix partsByVarOffset.Less method](https://golang.org/cl/122776) `dupSubExpr`
 1. [runtime: remove redundant explicit deref in trace.go](https://golang.org/cl/122895) `underef`
 1. [cmd/link/internal/sym: uncomment code for ELF cases in RelocName](https://golang.org/cl/122896) `commentedOutCode`
+1. [runtime: simplify slice expression to sliced value itself](https://go-review.googlesource.com/c/go/+/123375) `unslice`
+1. [html/template: use named consts instead of their values](https://go-review.googlesource.com/c/go/+/123376) `namedConst`
+1. [cmd/internal/obj/arm64: simplify some bool expressions](https://go-review.googlesource.com/c/go/+/123377) `boolExprSimplify`
+1. [math,net: omit explicit true tag expr in switch](https://go-review.googlesource.com/c/go/+/123378) `switchTrue`
+1. [archive/tar: remore redundant parens in type expressions](https://go-review.googlesource.com/c/go/+/123379) `typeUnparen`
 
 ### [upspin/upspin](https://github.com/upspin/upspin)
 
