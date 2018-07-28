@@ -137,6 +137,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects potentially unsafe dependencies on evaluation order</td>
       </tr>
       <tr>
+        <td><a href="#floatCompare-ref">floatCompare</a></td>
+        <td>Detects fragile float variables comparisons</td>
+      </tr>
+      <tr>
         <td><a href="#hugeParam-ref">hugeParam</a></td>
         <td>Detects params that incur excessive amount of copying</td>
       </tr>
@@ -147,6 +151,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#indexOnlyLoop-ref">indexOnlyLoop</a></td>
         <td>Detects for loops that can benefit from rewrite to range loop</td>
+      </tr>
+      <tr>
+        <td><a href="#initClause-ref">initClause</a></td>
+        <td>Detects non-assignment statements inside if/switch init clause</td>
       </tr>
       <tr>
         <td><a href="#longChain-ref">longChain</a></td>
@@ -189,6 +197,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects unnamed results that may benefit from names</td>
       </tr>
       <tr>
+        <td><a href="#unnecessaryBlock-ref">unnecessaryBlock</a></td>
+        <td>Detects unnecessary braced statement blocks</td>
+      </tr>
+      <tr>
         <td><a href="#unusedParam-ref">unusedParam</a></td>
         <td>Detects unused params and suggests to name them as `_` (underscore)</td>
       </tr>
@@ -197,6 +209,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects Yoda style expressions that suggest to replace them</td>
       </tr>
 </table>
+
 
 
 <a name="appendAssign-ref"></a>
@@ -218,6 +231,7 @@ p.negatives = append(p.negatives, y)
 ```
 
 
+
 <a name="appendCombine-ref"></a>
 ## appendCombine
 Detects `append` chains to the same slice that can be done in a single `append` call.
@@ -234,6 +248,7 @@ xs = append(xs, 2)
 ```go
 xs = append(xs, 1, 2)
 ```
+
 
 
 <a name="boolExprSimplify-ref"></a>
@@ -255,6 +270,7 @@ b := (x) == (y)
 ```
 
 
+
 <a name="boolFuncPrefix-ref"></a>
 ## boolFuncPrefix
 Detects function returning only bool and suggests to add Is/Has/Contains prefix to it's name.
@@ -272,7 +288,8 @@ func IsEnabled() bool
 ```
 
 
-`boolFuncPrefix` is very opinionated.<a name="builtinShadow-ref"></a>
+`boolFuncPrefix` is very opinionated.
+<a name="builtinShadow-ref"></a>
 ## builtinShadow
 Detects when predeclared identifiers shadowed in assignments.
 
@@ -291,7 +308,8 @@ println(length)
 ```
 
 
-`builtinShadow` is syntax-only checker (fast).<a name="captLocal-ref"></a>
+`builtinShadow` is syntax-only checker (fast).
+<a name="captLocal-ref"></a>
 ## captLocal
 Detects capitalized names for local variables.
 
@@ -308,7 +326,8 @@ func f(in int, out *int) (err error) {}
 ```
 
 
-`captLocal` is syntax-only checker (fast).<a name="caseOrder-ref"></a>
+`captLocal` is syntax-only checker (fast).
+<a name="caseOrder-ref"></a>
 ## caseOrder
 Detects erroneous case order inside switch statements.
 
@@ -335,6 +354,7 @@ case ast.Expr:
 ```
 
 
+
 <a name="commentedOutCode-ref"></a>
 ## commentedOutCode
 Detects commented-out code inside function bodies.
@@ -353,6 +373,7 @@ foo(1, 2)
 ```
 
 
+
 <a name="deadCodeAfterLogFatal-ref"></a>
 ## deadCodeAfterLogFatal
 Detects dead code that follow panic/fatal logging.
@@ -369,6 +390,7 @@ return
 ```go
 log.Fatal("exits function")
 ```
+
 
 
 <a name="defaultCaseOrder-ref"></a>
@@ -402,7 +424,8 @@ default: // <- last case (could also be the first one)
 ```
 
 
-`defaultCaseOrder` is syntax-only checker (fast).<a name="deferInLoop-ref"></a>
+`defaultCaseOrder` is syntax-only checker (fast).
+<a name="deferInLoop-ref"></a>
 ## deferInLoop
 Detects defer in loop and warns that it will not be executed till the end of function's scope.
 
@@ -423,6 +446,7 @@ for i := range [10]int{} {
 	}(i)
 }
 ```
+
 
 
 <a name="docStub-ref"></a>
@@ -446,7 +470,8 @@ func Foo() {
 
 You can either remove a comment to let go lint find it or change stub to useful comment.
 This checker makes it easier to detect stubs, the action is up to you.
-`docStub` is syntax-only checker (fast).<a name="dupBranchBody-ref"></a>
+`docStub` is syntax-only checker (fast).
+<a name="dupBranchBody-ref"></a>
 ## dupBranchBody
 Detects duplicated branch bodies inside conditional statements.
 
@@ -471,6 +496,7 @@ if cond {
 ```
 
 
+
 <a name="dupCase-ref"></a>
 ## dupCase
 Detects duplicated case clauses inside switch statements.
@@ -492,6 +518,7 @@ case ys[0], ys[1], ys[2], ys[3], ys[4]:
 ```
 
 
+
 <a name="dupSubExpr-ref"></a>
 ## dupSubExpr
 Detects suspicious duplicated sub-expressions.
@@ -511,6 +538,7 @@ sort.Slice(xs, func(i, j int) bool {
 	return xs[i].v < xs[j].v
 })
 ```
+
 
 
 <a name="elseif-ref"></a>
@@ -536,7 +564,8 @@ if cond1 {
 ```
 
 
-`elseif` is very opinionated.<a name="emptyFmt-ref"></a>
+`elseif` is very opinionated.
+<a name="emptyFmt-ref"></a>
 ## emptyFmt
 Detects usages of formatting functions without formatting arguments.
 
@@ -553,6 +582,7 @@ fmt.Errorf("wherever")
 fmt.Sprint("whatever")
 errors.New("wherever")
 ```
+
 
 
 <a name="evalOrder-ref"></a>
@@ -577,6 +607,7 @@ return mayModifySlice(&xs), v
 ```
 
 
+
 <a name="flagDeref-ref"></a>
 ## flagDeref
 Detects immediate dereferencing of `flag` package pointers..
@@ -596,7 +627,28 @@ flag.BoolVar(&b, "b", false, "b docs")
 
 Dereferencing returned pointers will lead to hard to find errors
 where flag values are not updated after flag.Parse().
-`flagDeref` is syntax-only checker (fast).<a name="hugeParam-ref"></a>
+`flagDeref` is syntax-only checker (fast).
+<a name="floatCompare-ref"></a>
+## floatCompare
+Detects fragile float variables comparisons.
+
+
+
+**Before:**
+```go
+// x and y are floats
+return x == y
+```
+
+**After:**
+```go
+// x and y are floats
+return math.Abs(x - y) < eps
+```
+
+
+
+<a name="hugeParam-ref"></a>
 ## hugeParam
 Detects params that incur excessive amount of copying.
 
@@ -611,6 +663,7 @@ func f(x [1024]int) {}
 ```go
 func f(x *[1024]int) {}
 ```
+
 
 
 <a name="ifElseChain-ref"></a>
@@ -644,7 +697,8 @@ default:
 
 Permits single else or else-if; repeated else-if or else + else-if
 will trigger suggestion to use switch statement.
-`ifElseChain` is syntax-only checker (fast).<a name="importShadow-ref"></a>
+`ifElseChain` is syntax-only checker (fast).
+<a name="importShadow-ref"></a>
 ## importShadow
 Detects when imported package names shadowed in assignments.
 
@@ -662,6 +716,7 @@ func myFunc(filepath string) {
 func myFunc(filename string) {
 }
 ```
+
 
 
 <a name="indexOnlyLoop-ref"></a>
@@ -689,6 +744,28 @@ for _, f := range files {
 ```
 
 
+
+<a name="initClause-ref"></a>
+## initClause
+Detects non-assignment statements inside if/switch init clause.
+
+
+
+**Before:**
+```go
+if sideEffect(); cond {
+}
+```
+
+**After:**
+```go
+sideEffect()
+if cond {
+}
+```
+
+
+`initClause` is syntax-only checker (fast).
 <a name="longChain-ref"></a>
 ## longChain
 Detects repeated expression chains and suggest to refactor them.
@@ -714,6 +791,7 @@ v := (a + x) + (b + x) + (c + x)
 ```
 
 
+
 <a name="namedConst-ref"></a>
 ## namedConst
 Detects literals that can be replaced with defined named const.
@@ -730,6 +808,7 @@ return pos != 0
 ```go
 return pos != token.NoPos
 ```
+
 
 
 <a name="nestingReduce-ref"></a>
@@ -758,6 +837,7 @@ for _, v := range a {
 ```
 
 
+
 <a name="paramTypeCombine-ref"></a>
 ## paramTypeCombine
 Detects if function parameters could be combined by type and suggest the way to do it.
@@ -775,7 +855,8 @@ func foo(a, b, c, d, e, f, g int) {}
 ```
 
 
-`paramTypeCombine` is syntax-only checker (fast).<a name="ptrToRefParam-ref"></a>
+`paramTypeCombine` is syntax-only checker (fast).
+<a name="ptrToRefParam-ref"></a>
 ## ptrToRefParam
 Detects input and output parameters that have a type of pointer to referential type.
 
@@ -793,6 +874,7 @@ func f(m map[string]int) (ch chan *int)
 
 Slices are not as referential as maps or channels, but it's usually
 better to return them by value rather than modyfing them by pointer.
+
 <a name="rangeExprCopy-ref"></a>
 ## rangeExprCopy
 Detects expensive copies of `for` loop range expressions.
@@ -814,6 +896,7 @@ for _, x := range &xs {
 	// Loop body.
 }
 ```
+
 
 
 <a name="rangeValCopy-ref"></a>
@@ -840,6 +923,7 @@ for i := range xs {
 ```
 
 
+
 <a name="regexpMust-ref"></a>
 ## regexpMust
 Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`.
@@ -855,6 +939,7 @@ re, _ := regexp.Compile("const pattern")
 ```go
 re := regexp.MustCompile("const pattern")
 ```
+
 
 
 <a name="singleCaseSwitch-ref"></a>
@@ -879,7 +964,8 @@ if x, ok := x.(int); ok {
 ```
 
 
-`singleCaseSwitch` is syntax-only checker (fast).<a name="sloppyLen-ref"></a>
+`singleCaseSwitch` is syntax-only checker (fast).
+<a name="sloppyLen-ref"></a>
 ## sloppyLen
 Detects usage of `len` when result is obvious or doesn't make sense.
 
@@ -899,7 +985,8 @@ len(arr) == 0
 ```
 
 
-`sloppyLen` is syntax-only checker (fast).<a name="sqlRowsClose-ref"></a>
+`sloppyLen` is syntax-only checker (fast).
+<a name="sqlRowsClose-ref"></a>
 ## sqlRowsClose
 Detects uses of *sql.Rows without call Close method.
 
@@ -921,6 +1008,7 @@ rows.Close()
 ```
 
 
+
 <a name="stdExpr-ref"></a>
 ## stdExpr
 Detects constant expressions that can be replaced by a stdlib const.
@@ -938,6 +1026,7 @@ maxVal := 1<<7 - 1
 intBytes := make([]byte, bits.IntSize)
 maxVal := math.MaxInt8
 ```
+
 
 
 <a name="switchTrue-ref"></a>
@@ -961,7 +1050,8 @@ case x > y:
 ```
 
 
-`switchTrue` is syntax-only checker (fast).<a name="typeSwitchVar-ref"></a>
+`switchTrue` is syntax-only checker (fast).
+<a name="typeSwitchVar-ref"></a>
 ## typeSwitchVar
 Detects type switches that can benefit from type guard clause with variable.
 
@@ -992,6 +1082,7 @@ default:
 ```
 
 
+
 <a name="typeUnparen-ref"></a>
 ## typeUnparen
 Detects unneded parenthesis inside type expressions and suggests to remove them.
@@ -1009,7 +1100,8 @@ type foo []func([]func())
 ```
 
 
-`typeUnparen` is syntax-only checker (fast).<a name="underef-ref"></a>
+`typeUnparen` is syntax-only checker (fast).
+<a name="underef-ref"></a>
 ## underef
 Detects dereference expressions that can be omitted.
 
@@ -1026,6 +1118,7 @@ v := (*a)[5] // only if a is array
 k.field = 5
 v := a[5]
 ```
+
 
 
 <a name="unexportedCall-ref"></a>
@@ -1049,7 +1142,8 @@ func baz(f foo) {
 ```
 
 
-`unexportedCall` is very opinionated.<a name="unnamedResult-ref"></a>
+`unexportedCall` is very opinionated.
+<a name="unnamedResult-ref"></a>
 ## unnamedResult
 Detects unnamed results that may benefit from names.
 
@@ -1066,6 +1160,29 @@ func f() (x, y float64)
 ```
 
 
+
+<a name="unnecessaryBlock-ref"></a>
+## unnecessaryBlock
+Detects unnecessary braced statement blocks.
+
+
+
+**Before:**
+```go
+x := 1
+{
+	print(x)
+}
+```
+
+**After:**
+```go
+x := 1
+print(x)
+```
+
+
+`unnecessaryBlock` is syntax-only checker (fast).
 <a name="unslice-ref"></a>
 ## unslice
 Detects slice expressions that can be simplified to sliced expression itself.
@@ -1085,6 +1202,7 @@ copy(b, values...)
 ```
 
 
+
 <a name="unusedParam-ref"></a>
 ## unusedParam
 Detects unused params and suggests to name them as `_` (underscore).
@@ -1100,6 +1218,7 @@ func f(a int, b float64) // b isn't used inside function body
 ```go
 func f(a int, _ float64) // everything is cool
 ```
+
 
 
 <a name="yodaStyleExpr-ref"></a>
