@@ -52,3 +52,13 @@ Most projects listed here have high base code quality, so every detected issue c
 ### [afiskon/go-elector](https://github.com/afiskon/go-elector)
 
 1. [minor style fixes](https://github.com/afiskon/go-elector/pull/1) `ifElseChain`, `stdExpr`, `paramTypeCombine`
+
+### [minio/minio](https://github.com/minio/minio)
+
+1. [simplifying if-else chains to switches](https://github.com/minio/minio/pull/6208) `singleCaseSwitch`
+
+### [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)
+
+1. [all: avoid copying arrays in loops](https://github.com/ethereum/go-ethereum/pull/17265) `rangeExprCopy`
+2. [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266) `appendAssign`
+3. [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267) `singleCaseSwitch`, `typeSwitchVar`
