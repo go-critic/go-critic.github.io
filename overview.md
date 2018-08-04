@@ -89,6 +89,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects function returning only bool and suggests to add Is/Has/Contains prefix to it's name</td>
       </tr>
       <tr>
+        <td><a href="#busySelect-ref">busySelect</a></td>
+        <td>Detects default statement inside a select without a sleep that might waste a CPU time</td>
+      </tr>
+      <tr>
         <td><a href="#captLocal-ref">captLocal</a></td>
         <td>Detects capitalized names for local variables</td>
       </tr>
@@ -173,6 +177,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Finds where nesting level could be reduced</td>
       </tr>
       <tr>
+        <td><a href="#nilValReturn-ref">nilValReturn</a></td>
+        <td>Detects return statements those results evaluate to nil</td>
+      </tr>
+      <tr>
         <td><a href="#ptrToRefParam-ref">ptrToRefParam</a></td>
         <td>Detects input and output parameters that have a type of pointer to referential type</td>
       </tr>
@@ -195,6 +203,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#unexportedCall-ref">unexportedCall</a> :nerd_face:</td>
         <td>Detects calls of unexported method from unexported type outside that type</td>
+      </tr>
+      <tr>
+        <td><a href="#unlambda-ref">unlambda</a></td>
+        <td>Detects function literals that can be simplified</td>
       </tr>
       <tr>
         <td><a href="#unnamedResult-ref">unnamedResult</a></td>
@@ -331,6 +343,38 @@ println(length)
 
 
 `builtinShadow` is syntax-only checker (fast).
+<a name="busySelect-ref"></a>
+## busySelect
+Detects default statement inside a select without a sleep that might waste a CPU time.
+
+
+
+**Before:**
+```go
+for {
+	select {
+	case <-ch:
+		// ...
+	default:
+		// will waste CPU time
+	}
+}
+```
+
+**After:**
+```go
+for {
+	select {
+	case <-ch:
+		// ...
+	default:
+		time.Sleep(100 * time.Millisecond)
+	}
+}
+```
+
+
+
 <a name="captLocal-ref"></a>
 ## captLocal
 Detects capitalized names for local variables.
@@ -860,6 +904,33 @@ for _, v := range a {
 
 
 
+<a name="nilValReturn-ref"></a>
+## nilValReturn
+Detects return statements those results evaluate to nil.
+
+
+
+**Before:**
+```go
+if err == nil {
+	return err
+}
+```
+
+**After:**
+```go
+// (A) - return nil explicitly
+if err == nil {
+	return nil
+}
+// (B) - typo in "==", change to "!="
+if err != nil {
+	return nil
+}
+```
+
+
+
 <a name="paramTypeCombine-ref"></a>
 ## paramTypeCombine
 Detects if function parameters could be combined by type and suggest the way to do it.
@@ -919,7 +990,7 @@ for _, x := range &xs { // No copy
 }
 ```
 
-
+See Go issue for details: https://github.com/golang/go/issues/15812
 
 <a name="rangeValCopy-ref"></a>
 ## rangeValCopy
@@ -1165,6 +1236,24 @@ func baz(f foo) {
 
 
 `unexportedCall` is very opinionated.
+<a name="unlambda-ref"></a>
+## unlambda
+Detects function literals that can be simplified.
+
+
+
+**Before:**
+```go
+func(x int) int { return fn(x) }
+```
+
+**After:**
+```go
+fn
+```
+
+
+
 <a name="unnamedResult-ref"></a>
 ## unnamedResult
 Detects unnamed results that may benefit from names.
