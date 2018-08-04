@@ -35,6 +35,11 @@ Most projects listed here have high base code quality, so every detected issue c
 
 1. [pack/internal/packtest: remove redundant parens in type conv](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76) `typeUnparen`
 
+### [gobufallo/buffalo](https://github.com/gobuffalo/buffalo)
+
+1. [internal/release,render: remove redundant func wrapping](https://github.com/gobuffalo/buffalo/pull/1211) `unlambda`
+1. [buffalo/cmd: make len comparison more clear](https://github.com/gobuffalo/buffalo/pull/1212) `sloppyLen`
+
 ### [mvdan/sh](https://github.com/mvdan/sh)
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
@@ -60,13 +65,13 @@ Most projects listed here have high base code quality, so every detected issue c
 ### [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)
 
 1. [all: avoid copying arrays in loops](https://github.com/ethereum/go-ethereum/pull/17265) `rangeExprCopy`
-2. [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266) `appendAssign`
-3. [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267) `singleCaseSwitch`, `typeSwitchVar`
+1. [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266) `appendAssign`
+1. [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267) `singleCaseSwitch`, `typeSwitchVar`
 
 ### [google/go-github](https://github.com/google/go-github)
 
 1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
-2. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
+1. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
 
 ### [ncw/rclone](https://github.com/ncw/rclone)
 
