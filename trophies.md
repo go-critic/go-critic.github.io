@@ -67,3 +67,7 @@ Most projects listed here have high base code quality, so every detected issue c
 
 1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
 2. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
+
+### [ncw/rclone](https://github.com/ncw/rclone)
+
+1. [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440) `undered`, `namedConst`, `unslice`, `builtinShadow`, `typeUnparen`
