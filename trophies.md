@@ -62,3 +62,8 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [all: avoid copying arrays in loops](https://github.com/ethereum/go-ethereum/pull/17265) `rangeExprCopy`
 2. [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266) `appendAssign`
 3. [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267) `singleCaseSwitch`, `typeSwitchVar`
+
+### [google/go-github](https://github.com/google/go-github)
+
+1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
+2. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
