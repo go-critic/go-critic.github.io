@@ -54,6 +54,12 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969) `boolExprSimplify`
 1. [contrib/recipes: use clientv3.NoLease instead of 0](https://github.com/coreos/etcd/pull/9970) `namedConst`
 
+### [openshift/origin](https://github.com/openshift/origin)
+
+1. [cmd/server: replace raw literals with named constants](https://github.com/openshift/origin/pull/20540) `namedConst`
+1. [apps: replace func lits with wrapped func value](https://github.com/openshift/origin/pull/20541) `unlambda`
+1. [build/controller/build: simplify bool exprs](https://github.com/openshift/origin/pull/20542) `boolExprSimplify`
+
 ### [mvdan/sh](https://github.com/mvdan/sh)
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
