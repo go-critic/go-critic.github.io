@@ -40,11 +40,34 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [internal/release,render: remove redundant func wrapping](https://github.com/gobuffalo/buffalo/pull/1211) `unlambda`
 1. [buffalo/cmd: make len comparison more clear](https://github.com/gobuffalo/buffalo/pull/1212) `sloppyLen`
 
+### [graphql-go/graphql](https://github.com/graphql-go/graphql)
+
+1. [use type switch with var binding](https://github.com/graphql-go/graphql/pull/372) `typeSwitchVar`
+1. [replace regexp.Compile with regexp.MustCompile](https://github.com/graphql-go/graphql/pull/373) `regexpMust`
+1. [replace len(x)<=v with len(x)==v](https://github.com/graphql-go/graphql/pull/374) `sloppyLen`
+1. [simplify single case type switches](https://github.com/graphql-go/graphql/pull/375) `singleCaseSwitch`
+1. [simplify assignments with op= syntax](https://github.com/graphql-go/graphql/pull/376) `assignOp`
+
+### [coreos/etcd](https://github.com/coreos/etcd)
+
+1. [etcdctl/ctlv2/command: fix type switch case order](https://github.com/coreos/etcd/pull/9968) `caseOrder`
+1. [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969) `boolExprSimplify`
+1. [contrib/recipes: use clientv3.NoLease instead of 0](https://github.com/coreos/etcd/pull/9970) `namedConst`
+
 ### [mvdan/sh](https://github.com/mvdan/sh)
 
 1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
 1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
 1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `ifElseChain`
+
+### [securego/gosec](https://github.com/securego/gosec)
+
+1. [replace len(x)<=0 with len(x)==0](https://github.com/securego/gosec/pull/220) `sloppyLen`
+1. [fix duplicated index issue in Less method](https://github.com/securego/gosec/pull/221) `dupSubExpr`
+
+### [go-reform/reform](https://github.com/go-reform/reform/pull/166)
+
+1. [parse: replace 1 case switch with if](https://github.com/go-reform/reform/pull/166) `singleCaseSwitch`
 
 ### [rumyantseva/go-zeroservice](https://github.com/rumyantseva/go-zeroservice)
 
