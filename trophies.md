@@ -30,6 +30,7 @@ Most projects listed here have high base code quality, so every detected issue c
 1. [cmd/internal/obj/arm64: simplify some bool expressions](https://go-review.googlesource.com/c/go/+/123377) `boolExprSimplify`
 1. [math,net: omit explicit true tag expr in switch](https://go-review.googlesource.com/c/go/+/123378) `switchTrue`
 1. [archive/tar: remore redundant parens in type expressions](https://go-review.googlesource.com/c/go/+/123379) `typeUnparen`
+1. [strings, bytes: avoid unnecessary function literals](https://go-review.googlesource.com/c/go/+/127756) `unlambda`
 
 ### [upspin/upspin](https://github.com/upspin/upspin)
 
