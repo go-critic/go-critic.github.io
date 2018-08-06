@@ -101,7 +101,11 @@ Most projects listed here have high base code quality, so every detected issue c
 ### [google/go-github](https://github.com/google/go-github)
 
 1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
-1. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
+2. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
+
+### [google/go-cloud](https://github.com/google/go-cloud)
+
+1. [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260) `boolExprSimplify`, `typeSwitchVar`, `ifElseChain`, `namedConst`
 
 ### [ncw/rclone](https://github.com/ncw/rclone)
 
