@@ -117,6 +117,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects defer in loop and warns that it will not be executed till the end of function's scope</td>
       </tr>
       <tr>
+        <td><a href="#deprecatedComment-ref">deprecatedComment</a></td>
+        <td>Detects malformed "deprecated" doc-comments</td>
+      </tr>
+      <tr>
         <td><a href="#docStub-ref">docStub</a></td>
         <td>Detects comments that silence go lint complaints about doc-comment</td>
       </tr>
@@ -137,6 +141,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects else with nested if statement that can be replaced with else-if</td>
       </tr>
       <tr>
+        <td><a href="#emptyFallthrough-ref">emptyFallthrough</a></td>
+        <td>Detects fallthrough that can be avoided by using multi case values</td>
+      </tr>
+      <tr>
         <td><a href="#emptyFmt-ref">emptyFmt</a></td>
         <td>Detects usages of formatting functions without formatting arguments</td>
       </tr>
@@ -151,6 +159,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#hugeParam-ref">hugeParam</a></td>
         <td>Detects params that incur excessive amount of copying</td>
+      </tr>
+      <tr>
+        <td><a href="#importPackageName-ref">importPackageName</a></td>
+        <td>Detects when imported package names are unnecessary renamed</td>
       </tr>
       <tr>
         <td><a href="#importShadow-ref">importShadow</a></td>
@@ -515,6 +527,26 @@ for i := range [10]int{} {
 
 
 
+<a name="deprecatedComment-ref"></a>
+## deprecatedComment
+Detects malformed "deprecated" doc-comments.
+
+
+
+**Before:**
+```go
+// deprecated, use FuncNew instead
+func FuncOld() int
+```
+
+**After:**
+```go
+// Deprecated: use FuncNew instead
+func FuncOld() int
+```
+
+
+`deprecatedComment` is syntax-only checker (fast).
 <a name="docStub-ref"></a>
 ## docStub
 Detects comments that silence go lint complaints about doc-comment.
@@ -631,6 +663,32 @@ if cond1 {
 
 
 `elseif` is very opinionated.
+<a name="emptyFallthrough-ref"></a>
+## emptyFallthrough
+Detects fallthrough that can be avoided by using multi case values.
+
+
+
+**Before:**
+```go
+switch kind {
+case reflect.Int:
+	fallthrough
+case reflect.Int32:
+	return Int
+}
+```
+
+**After:**
+```go
+switch kind {
+case reflect.Int, reflect.Int32:
+	return Int
+}
+```
+
+
+
 <a name="emptyFmt-ref"></a>
 ## emptyFmt
 Detects usages of formatting functions without formatting arguments.
@@ -764,6 +822,24 @@ default:
 Permits single else or else-if; repeated else-if or else + else-if
 will trigger suggestion to use switch statement.
 `ifElseChain` is syntax-only checker (fast).
+<a name="importPackageName-ref"></a>
+## importPackageName
+Detects when imported package names are unnecessary renamed.
+
+
+
+**Before:**
+```go
+import lint "github.com/go-critic/go-critic/lint"
+```
+
+**After:**
+```go
+import "github.com/go-critic/go-critic/lint"
+```
+
+
+
 <a name="importShadow-ref"></a>
 ## importShadow
 Detects when imported package names shadowed in assignments.
