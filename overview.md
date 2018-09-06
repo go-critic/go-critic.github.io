@@ -40,6 +40,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects loops that copy big objects during each iteration</td>
       </tr>
       <tr>
+        <td><a href="#regexpMust-ref">regexpMust</a></td>
+        <td>Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`</td>
+      </tr>
+      <tr>
         <td><a href="#singleCaseSwitch-ref">singleCaseSwitch</a></td>
         <td>Detects switch statements that could be better written as if statements</td>
       </tr>
@@ -125,6 +129,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects comments that silence go lint complaints about doc-comment</td>
       </tr>
       <tr>
+        <td><a href="#dupArg-ref">dupArg</a></td>
+        <td>Detects suspicious duplicated arguments</td>
+      </tr>
+      <tr>
         <td><a href="#dupBranchBody-ref">dupBranchBody</a></td>
         <td>Detects duplicated branch bodies inside conditional statements</td>
       </tr>
@@ -181,6 +189,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects repeated expression chains and suggest to refactor them</td>
       </tr>
       <tr>
+        <td><a href="#methodExprCall-ref">methodExprCall</a> :nerd_face:</td>
+        <td>Detects method expression call that can be replaced with a method call</td>
+      </tr>
+      <tr>
         <td><a href="#namedConst-ref">namedConst</a></td>
         <td>Detects literals that can be replaced with defined named const</td>
       </tr>
@@ -195,10 +207,6 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       <tr>
         <td><a href="#ptrToRefParam-ref">ptrToRefParam</a></td>
         <td>Detects input and output parameters that have a type of pointer to referential type</td>
-      </tr>
-      <tr>
-        <td><a href="#regexpMust-ref">regexpMust</a></td>
-        <td>Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`</td>
       </tr>
       <tr>
         <td><a href="#sloppyLen-ref">sloppyLen</a></td>
@@ -229,7 +237,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects unnecessary braced statement blocks</td>
       </tr>
       <tr>
-        <td><a href="#unusedParam-ref">unusedParam</a></td>
+        <td><a href="#unusedParam-ref">unusedParam</a> :nerd_face:</td>
         <td>Detects unused params and suggests to name them as `_` (underscore)</td>
       </tr>
       <tr>
@@ -569,6 +577,24 @@ func Foo() {
 You can either remove a comment to let go lint find it or change stub to useful comment.
 This checker makes it easier to detect stubs, the action is up to you.
 `docStub` is syntax-only checker (fast).
+<a name="dupArg-ref"></a>
+## dupArg
+Detects suspicious duplicated arguments.
+
+
+
+**Before:**
+```go
+copy(dst, dst)
+```
+
+**After:**
+```go
+copy(dst, src)
+```
+
+
+
 <a name="dupBranchBody-ref"></a>
 ## dupBranchBody
 Detects duplicated branch bodies inside conditional statements.
@@ -821,6 +847,7 @@ default:
 
 Permits single else or else-if; repeated else-if or else + else-if
 will trigger suggestion to use switch statement.
+See [EffectiveGo#switch](https://golang.org/doc/effective_go.html#switch).
 `ifElseChain` is syntax-only checker (fast).
 <a name="importPackageName-ref"></a>
 ## importPackageName
@@ -934,6 +961,26 @@ v := (a + x) + (b + x) + (c + x)
 
 
 
+<a name="methodExprCall-ref"></a>
+## methodExprCall
+Detects method expression call that can be replaced with a method call.
+
+
+
+**Before:**
+```go
+f := foo{}
+foo.bar(f)
+```
+
+**After:**
+```go
+f := foo{}
+f.bar()
+```
+
+
+`methodExprCall` is very opinionated.
 <a name="namedConst-ref"></a>
 ## namedConst
 Detects literals that can be replaced with defined named const.
@@ -1033,16 +1080,15 @@ Detects input and output parameters that have a type of pointer to referential t
 
 **Before:**
 ```go
-func f(m *map[string]int) (ch *chan *int)
+func f(m *map[string]int) (*chan *int)
 ```
 
 **After:**
 ```go
-func f(m map[string]int) (ch chan *int)
+func f(m map[string]int) (chan *int)
 ```
 
-Slices are not as referential as maps or channels, but it's usually
-better to return them by value rather than modyfing them by pointer.
+
 
 <a name="rangeExprCopy-ref"></a>
 ## rangeExprCopy
@@ -1407,7 +1453,7 @@ func f(a int, _ float64) // everything is cool
 ```
 
 
-
+`unusedParam` is very opinionated.
 <a name="yodaStyleExpr-ref"></a>
 ## yodaStyleExpr
 Detects Yoda style expressions that suggest to replace them.
