@@ -110,3 +110,11 @@ Most projects listed here have high base code quality, so every detected issue c
 ### [ncw/rclone](https://github.com/ncw/rclone)
 
 1. [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440) `undered`, `namedConst`, `unslice`, `builtinShadow`, `typeUnparen`
+
+### [go-gitea/gitea](https://github.com/go-gitea/gitea)
+
+1. [Remove check for negative length](https://github.com/go-gitea/gitea/pull/5120) `sloppyLen`
+2. [Use named const instead of a raw string](https://github.com/go-gitea/gitea/pull/5115) `namedConst`
+3. [Use type switch](https://github.com/go-gitea/gitea/pull/5122) `typeSwitchVar`
+4. [Remove duplicated if bodies](https://github.com/go-gitea/gitea/pull/5121) `dupBranchBody`
+5. [Make switch more clear](https://github.com/go-gitea/gitea/pull/5119) `defaultCaseOrder`
