@@ -21,7 +21,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       </tr>
       <tr>
         <td><a href="#flagDeref-ref">flagDeref</a></td>
-        <td>Detects immediate dereferencing of `flag` package pointers.</td>
+        <td>Detects immediate dereferencing of `flag` package pointers</td>
       </tr>
       <tr>
         <td><a href="#ifElseChain-ref">ifElseChain</a></td>
@@ -165,6 +165,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects potentially unsafe dependencies on evaluation order</td>
       </tr>
       <tr>
+        <td><a href="#flagName-ref">flagName</a></td>
+        <td>Detects flag names with whitespace</td>
+      </tr>
+      <tr>
         <td><a href="#floatCompare-ref">floatCompare</a></td>
         <td>Detects fragile float variables comparisons</td>
       </tr>
@@ -229,6 +233,10 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
         <td>Detects constant expressions that can be replaced by a stdlib const</td>
       </tr>
       <tr>
+        <td><a href="#structLitKeyOrder-ref">structLitKeyOrder</a> :nerd_face:</td>
+        <td>Detects struct literal keys order that does not match declaration order</td>
+      </tr>
+      <tr>
         <td><a href="#unexportedCall-ref">unexportedCall</a> :nerd_face:</td>
         <td>Detects calls of unexported method from unexported type outside that type</td>
       </tr>
@@ -250,7 +258,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
       </tr>
       <tr>
         <td><a href="#yodaStyleExpr-ref">yodaStyleExpr</a> :nerd_face:</td>
-        <td>Detects Yoda style expressions that suggest to replace them</td>
+        <td>Detects Yoda style expressions and suggests to replace them</td>
       </tr>
 </table>
 
@@ -579,7 +587,9 @@ func FuncOld() int
 func FuncOld() int
 ```
 
-
+To signal that an identifier
+should not be used, add a paragraph to its doc comment that begins with
+"Deprecated:" followed by some information about the deprecation.
 `deprecatedComment` is syntax-only checker (fast).
 <a name="docStub-ref"></a>
 ## docStub
@@ -786,7 +796,7 @@ return mayModifySlice(&xs), v
 
 <a name="flagDeref-ref"></a>
 ## flagDeref
-Detects immediate dereferencing of `flag` package pointers..
+Detects immediate dereferencing of `flag` package pointers.
 
 
 
@@ -804,6 +814,24 @@ flag.BoolVar(&b, "b", false, "b docs")
 Dereferencing returned pointers will lead to hard to find errors
 where flag values are not updated after flag.Parse().
 `flagDeref` is syntax-only checker (fast).
+<a name="flagName-ref"></a>
+## flagName
+Detects flag names with whitespace.
+
+
+
+**Before:**
+```go
+b := flag.Bool(" foo ", false, "description")
+```
+
+**After:**
+```go
+b := flag.Bool("foo", false, "description")
+```
+
+
+
 <a name="floatCompare-ref"></a>
 ## floatCompare
 Detects fragile float variables comparisons.
@@ -930,7 +958,7 @@ strings.Index(string(x), y)
 bytes.Index(x, []byte(y))
 ```
 
-
+See Go issue for details: https://github.com/golang/go/issues/25864
 
 <a name="indexOnlyLoop-ref"></a>
 ## indexOnlyLoop
@@ -1092,7 +1120,7 @@ if err == nil {
 }
 // (B) - typo in "==", change to "!="
 if err != nil {
-	return nil
+	return err
 }
 ```
 
@@ -1288,6 +1316,26 @@ maxVal := math.MaxInt8
 
 
 
+<a name="structLitKeyOrder-ref"></a>
+## structLitKeyOrder
+Detects struct literal keys order that does not match declaration order.
+
+
+
+**Before:**
+```go
+type foo struct{ x, y int }
+v := foo{y: y, x: x}
+```
+
+**After:**
+```go
+type foo struct{ x, y int }
+v := foo{x: x, y: y}
+```
+
+
+`structLitKeyOrder` is very opinionated.
 <a name="switchTrue-ref"></a>
 ## switchTrue
 Detects switch-over-bool statements that use explicit `true` tag value.
@@ -1509,7 +1557,7 @@ copy(b, values...)
 
 <a name="yodaStyleExpr-ref"></a>
 ## yodaStyleExpr
-Detects Yoda style expressions that suggest to replace them.
+Detects Yoda style expressions and suggests to replace them.
 
 
 
