@@ -2,11 +2,11 @@
 
 Contributions are partitioned by projects.
 
-By "contribution", we mean all of these:
+By the "contribution", we mean all of these:
 
 1. Commit that fixes the problem
 2. Reported issue (if there is no commit yet)
-3. Any other form of advices that were suggested by `go-critic`
+3. Any other form of advice that was suggested by `go-critic`
 
 The list is sorted by priority.
 If commit exist, it should be referenced instead of issue.
@@ -17,6 +17,9 @@ This page exists mostly to determine most useful checks that can trigger on real
 These checks are a good candidates to be included into "default" `go-critic` list.
 
 Most projects listed here have high base code quality, so every detected issue counts.
+
+Note that this list is not comprehensive.
+It's virtually impossible to keep track of all contributions were made.
 
 ### [golang/go](https://github.com/golang/go)
 
