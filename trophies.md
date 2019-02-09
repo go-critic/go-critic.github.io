@@ -90,6 +90,7 @@ It's virtually impossible to keep track of all contributions were made.
 1. {**[coreos/etcd](https://github.com/coreos/etcd)**} [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969)
 1. {**[openshift/origin](https://github.com/openshift/origin)**} [build/controller/build: simplify bool exprs](https://github.com/openshift/origin/pull/20542)
 1. {**[google/go-cloud](https://github.com/google/go-cloud)**} [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260)
+1. {**[astaxie/beego](github.com/astaxie/beego)**} [all: simplify boolean expressions](https://github.com/astaxie/beego/pull/3523)
 
 ### [switchTrue](https://go-critic.github.io/overview.html#switchTrue-ref)
 
