@@ -23,6 +23,14 @@ It's virtually impossible to keep track of all contributions were made.
 
 ## Diagnostic
 
+### [argOrder](https://go-critic.github.io/overview.html#argOrder-ref)
+
+1. {**[gohugoio/hugo](https://github.com/gohugoio/hugo)**} [tpl: Fix strings.HasPrefix args order](https://github.com/gohugoio/hugo/commit/7201042946dde78d5ea4fea9cb006fb4dded55c1)
+1. {**[syncthing/syncthing](https://github.com/syncthing/syncthing) [cmd/syncthing: Correct strings.HasPrefix args order](https://github.com/syncthing/syncthing/commit/ca47b4c218eb2e6b8aff49b58dca4dd4b65a7e10)
+1. {**[etcd-io/etcd](https://github.com/etcd-io/etcd)**} [Fix strings.HasPrefix args order](https://github.com/etcd-io/etcd/commit/1fe6f109c87c4fa47775426a6a60c3b954ed5c33)
+1. {**[goreleaser/goreleaser](https://github.com/goreleaser/goreleaser)**} [fix: brew strings.HasPrefix args order](https://github.com/goreleaser/goreleaser/commit/ba09765bfa2c980e3051c33c921d556a4a1b53a3)
+1. {**[golang/go](https://github.com/golang/go)**} [net/rpc: fix args order in strings.Contains call](https://go-review.googlesource.com/c/go/+/161157)
+
 ### [dupSubExpr](https://go-critic.github.io/overview.html#dupSubExpr-ref)
 
 1. {**[golang/go](https://github.com/golang/go)**} [cmd/compile/internal/ssa: fix partsByVarOffset.Less method](https://golang.org/cl/122776)
