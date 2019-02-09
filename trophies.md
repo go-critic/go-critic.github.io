@@ -29,7 +29,6 @@ It's virtually impossible to keep track of all contributions were made.
 1. [runtime: remove redundant explicit deref in trace.go](https://golang.org/cl/122895) `underef`
 1. [cmd/link/internal/sym: uncomment code for ELF cases in RelocName](https://golang.org/cl/122896) `commentedOutCode`
 1. [runtime: simplify slice expression to sliced value itself](https://go-review.googlesource.com/c/go/+/123375) `unslice`
-1. [html/template: use named consts instead of their values](https://go-review.googlesource.com/c/go/+/123376) `namedConst`
 1. [cmd/internal/obj/arm64: simplify some bool expressions](https://go-review.googlesource.com/c/go/+/123377) `boolExprSimplify`
 1. [math,net: omit explicit true tag expr in switch](https://go-review.googlesource.com/c/go/+/123378) `switchTrue`
 1. [archive/tar: remore redundant parens in type expressions](https://go-review.googlesource.com/c/go/+/123379) `typeUnparen`
@@ -56,11 +55,9 @@ It's virtually impossible to keep track of all contributions were made.
 
 1. [etcdctl/ctlv2/command: fix type switch case order](https://github.com/coreos/etcd/pull/9968) `caseOrder`
 1. [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969) `boolExprSimplify`
-1. [contrib/recipes: use clientv3.NoLease instead of 0](https://github.com/coreos/etcd/pull/9970) `namedConst`
 
 ### [openshift/origin](https://github.com/openshift/origin)
 
-1. [cmd/server: replace raw literals with named constants](https://github.com/openshift/origin/pull/20540) `namedConst`
 1. [apps: replace func lits with wrapped func value](https://github.com/openshift/origin/pull/20541) `unlambda`
 1. [build/controller/build: simplify bool exprs](https://github.com/openshift/origin/pull/20542) `boolExprSimplify`
 
@@ -79,17 +76,13 @@ It's virtually impossible to keep track of all contributions were made.
 
 1. [parse: replace 1 case switch with if](https://github.com/go-reform/reform/pull/166) `singleCaseSwitch`
 
-### [rumyantseva/go-zeroservice](https://github.com/rumyantseva/go-zeroservice)
-
-1. [app.go: rename unused param to `_`](https://github.com/rumyantseva/go-zeroservice/pull/3) `unusedParam`
-
 ### [intel-go/nff-go](https://github.com/intel-go/nff-go)
 
 1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeSwitchVar`, `paramTypeCombine`
 
 ### [afiskon/go-elector](https://github.com/afiskon/go-elector)
 
-1. [minor style fixes](https://github.com/afiskon/go-elector/pull/1) `ifElseChain`, `stdExpr`, `paramTypeCombine`
+1. [minor style fixes](https://github.com/afiskon/go-elector/pull/1) `ifElseChain`, `paramTypeCombine`
 
 ### [minio/minio](https://github.com/minio/minio)
 
@@ -104,20 +97,18 @@ It's virtually impossible to keep track of all contributions were made.
 ### [google/go-github](https://github.com/google/go-github)
 
 1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
-2. [fix named consts](https://github.com/google/go-github/pull/962) `namedConst`
 
 ### [google/go-cloud](https://github.com/google/go-cloud)
 
-1. [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260) `boolExprSimplify`, `typeSwitchVar`, `ifElseChain`, `namedConst`
+1. [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260) `boolExprSimplify`, `typeSwitchVar`, `ifElseChain`
 
 ### [ncw/rclone](https://github.com/ncw/rclone)
 
-1. [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440) `undered`, `namedConst`, `unslice`, `builtinShadow`, `typeUnparen`
+1. [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440) `underef`, `namedConst`, `unslice`, `builtinShadow`, `typeUnparen`
 
 ### [go-gitea/gitea](https://github.com/go-gitea/gitea)
 
 1. [Remove check for negative length](https://github.com/go-gitea/gitea/pull/5120) `sloppyLen`
-1. [Use named const instead of a raw string](https://github.com/go-gitea/gitea/pull/5115) `namedConst`
 1. [Use type switch](https://github.com/go-gitea/gitea/pull/5122) `typeSwitchVar`
 1. [Remove duplicated if bodies](https://github.com/go-gitea/gitea/pull/5121) `dupBranchBody`
 1. [Make switch more clear](https://github.com/go-gitea/gitea/pull/5119) `defaultCaseOrder`
