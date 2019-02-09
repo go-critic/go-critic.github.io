@@ -1,6 +1,6 @@
-## Trophies
+# Trophies
 
-Contributions are partitioned by projects.
+Contributions are partitioned by the check (diagnostic) names.
 
 By the "contribution", we mean all of these:
 
@@ -21,94 +21,126 @@ Most projects listed here have high base code quality, so every detected issue c
 Note that this list is not comprehensive.
 It's virtually impossible to keep track of all contributions were made.
 
-### [golang/go](https://github.com/golang/go)
+## Diagnostic
 
-1. [net: combine append calls in reverseaddr](https://golang.org/cl/117615) `appendCombine`
-1. [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636) `rangeValCopy`
-1. [cmd/compile/internal/ssa: fix partsByVarOffset.Less method](https://golang.org/cl/122776) `dupSubExpr`
-1. [runtime: remove redundant explicit deref in trace.go](https://golang.org/cl/122895) `underef`
-1. [cmd/link/internal/sym: uncomment code for ELF cases in RelocName](https://golang.org/cl/122896) `commentedOutCode`
-1. [runtime: simplify slice expression to sliced value itself](https://go-review.googlesource.com/c/go/+/123375) `unslice`
-1. [cmd/internal/obj/arm64: simplify some bool expressions](https://go-review.googlesource.com/c/go/+/123377) `boolExprSimplify`
-1. [math,net: omit explicit true tag expr in switch](https://go-review.googlesource.com/c/go/+/123378) `switchTrue`
-1. [archive/tar: remore redundant parens in type expressions](https://go-review.googlesource.com/c/go/+/123379) `typeUnparen`
-1. [strings, bytes: avoid unnecessary function literals](https://go-review.googlesource.com/c/go/+/127756) `unlambda`
+### [dupSubExpr](https://go-critic.github.io/overview.html#dupSubExpr-ref)
 
-### [upspin/upspin](https://github.com/upspin/upspin)
+1. {**[golang/go](https://github.com/golang/go)**} [cmd/compile/internal/ssa: fix partsByVarOffset.Less method](https://golang.org/cl/122776)
+1. {**[securego/gosec](https://github.com/securego/gosec)**} [fix duplicated index issue in Less method](https://github.com/securego/gosec/pull/221)
 
-1. [pack/internal/packtest: remove redundant parens in type conv](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76) `typeUnparen`
+### [caseOrder](https://go-critic.github.io/overview.html#assignOp-ref)
 
-### [gobufallo/buffalo](https://github.com/gobuffalo/buffalo)
+1. {**[coreos/etcd](https://github.com/coreos/etcd)**} [etcdctl/ctlv2/command: fix type switch case order](https://github.com/coreos/etcd/pull/9968)
 
-1. [internal/release,render: remove redundant func wrapping](https://github.com/gobuffalo/buffalo/pull/1211) `unlambda`
-1. [buffalo/cmd: make len comparison more clear](https://github.com/gobuffalo/buffalo/pull/1212) `sloppyLen`
+### [commentedOutCode](https://go-critic.github.io/overview.html#commentedOutCode-ref)
 
-### [graphql-go/graphql](https://github.com/graphql-go/graphql)
+1. {**[golang/go](https://github.com/golang/go)**} [cmd/link/internal/sym: uncomment code for ELF cases in RelocName](https://golang.org/cl/122896)
 
-1. [use type switch with var binding](https://github.com/graphql-go/graphql/pull/372) `typeSwitchVar`
-1. [replace regexp.Compile with regexp.MustCompile](https://github.com/graphql-go/graphql/pull/373) `regexpMust`
-1. [replace len(x)<=v with len(x)==v](https://github.com/graphql-go/graphql/pull/374) `sloppyLen`
-1. [simplify single case type switches](https://github.com/graphql-go/graphql/pull/375) `singleCaseSwitch`
-1. [simplify assignments with op= syntax](https://github.com/graphql-go/graphql/pull/376) `assignOp`
+### [appendAssign](https://go-critic.github.io/overview.html#appendAssign-ref)
 
-### [coreos/etcd](https://github.com/coreos/etcd)
+1. {**[ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)**} [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266)
 
-1. [etcdctl/ctlv2/command: fix type switch case order](https://github.com/coreos/etcd/pull/9968) `caseOrder`
-1. [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969) `boolExprSimplify`
+### [dupBranchBody](https://go-critic.github.io/overview.html#dupBranchBody-ref)
 
-### [openshift/origin](https://github.com/openshift/origin)
+1. {**[go-gitea/gitea](https://github.com/go-gitea/gitea)**} [Remove duplicated if bodies](https://github.com/go-gitea/gitea/pull/5121)
 
-1. [apps: replace func lits with wrapped func value](https://github.com/openshift/origin/pull/20541) `unlambda`
-1. [build/controller/build: simplify bool exprs](https://github.com/openshift/origin/pull/20542) `boolExprSimplify`
+## Style
 
-### [mvdan/sh](https://github.com/mvdan/sh)
+### [builtinShadow](https://go-critic.github.io/overview.html#builtinShadow-ref)
 
-1. [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253) `rangeExprCopy`
-1. [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255) `singleCaseSwitch`
-1. [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254) `ifElseChain`
+1. {**[ncw/rclone](https://github.com/ncw/rclone)**} [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440)
 
-### [securego/gosec](https://github.com/securego/gosec)
+### [defaultCaseOrder](https://go-critic.github.io/overview.html#defaultCaseOrder-ref)
 
-1. [replace len(x)<=0 with len(x)==0](https://github.com/securego/gosec/pull/220) `sloppyLen`
-1. [fix duplicated index issue in Less method](https://github.com/securego/gosec/pull/221) `dupSubExpr`
+1. {**[go-gitea/gitea](https://github.com/go-gitea/gitea)**} [Make switch more clear](https://github.com/go-gitea/gitea/pull/5119)
 
-### [go-reform/reform](https://github.com/go-reform/reform/pull/166)
+### [ifElseChain](https://go-critic.github.io/overview.html#ifElseChain-ref)
 
-1. [parse: replace 1 case switch with if](https://github.com/go-reform/reform/pull/166) `singleCaseSwitch`
+1. {**[mvdan/sh](https://github.com/mvdan/sh)**} [syntax: replace if-else chains with expr switch stmt](https://github.com/mvdan/sh/pull/254)
+1. {**[afiskon/go-elector](https://github.com/afiskon/go-elector)**} [minor style fixes](https://github.com/afiskon/go-elector/pull/1)
+1. {**[google/go-cloud](https://github.com/google/go-cloud)**} [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260)
 
-### [intel-go/nff-go](https://github.com/intel-go/nff-go)
+### [paramTypeCombine](https://go-critic.github.io/overview.html#paramTypeCombine-ref)
 
-1. [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338) `typeSwitchVar`, `paramTypeCombine`
+1. {**[intel-go/nff-go](https://github.com/intel-go/nff-go)**} [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338)
+1. {**[afiskon/go-elector](https://github.com/afiskon/go-elector)**} [minor style fixes](https://github.com/afiskon/go-elector/pull/1)
 
-### [afiskon/go-elector](https://github.com/afiskon/go-elector)
+### [underef](https://go-critic.github.io/overview.html#underef-ref)
 
-1. [minor style fixes](https://github.com/afiskon/go-elector/pull/1) `ifElseChain`, `paramTypeCombine`
+1. {**[golang/go](https://github.com/golang/go)**} [runtime: remove redundant explicit deref in trace.go](https://golang.org/cl/122895)
+1. {**[google/go-github](https://github.com/google/go-github)**} [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960)
+1. {**[ncw/rclone](https://github.com/ncw/rclone)**} [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440)
 
-### [minio/minio](https://github.com/minio/minio)
+### [unslice](https://go-critic.github.io/overview.html#unslice-ref)
 
-1. [simplifying if-else chains to switches](https://github.com/minio/minio/pull/6208) `singleCaseSwitch`
+1. {**[golang/go](https://github.com/golang/go)**} [runtime: simplify slice expression to sliced value itself](https://go-review.googlesource.com/c/go/+/123375)
+1. {**[ncw/rclone](https://github.com/ncw/rclone)**} [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440)
 
-### [ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)
+### [boolExprSimplify](https://go-critic.github.io/overview.html#boolExprSimplify-ref)
 
-1. [all: avoid copying arrays in loops](https://github.com/ethereum/go-ethereum/pull/17265) `rangeExprCopy`
-1. [dashboard: append to proper slice](https://github.com/ethereum/go-ethereum/pull/17266) `appendAssign`
-1. [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267) `singleCaseSwitch`, `typeSwitchVar`
+1. {**[golang/go](https://github.com/golang/go)**} [cmd/internal/obj/arm64: simplify some bool expressions](https://go-review.googlesource.com/c/go/+/123377)
+1. {**[coreos/etcd](https://github.com/coreos/etcd)**} [etcdserver/api/v2discovery: simplify !(x == y) to x != y](https://github.com/coreos/etcd/pull/9969)
+1. {**[openshift/origin](https://github.com/openshift/origin)**} [build/controller/build: simplify bool exprs](https://github.com/openshift/origin/pull/20542)
+1. {**[google/go-cloud](https://github.com/google/go-cloud)**} [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260)
 
-### [google/go-github](https://github.com/google/go-github)
+### [switchTrue](https://go-critic.github.io/overview.html#switchTrue-ref)
 
-1. [Remove redundant dereference of time.Time](https://github.com/google/go-github/pull/960) `underef`
+1. {**[golang/go](https://github.com/golang/go)**} [math,net: omit explicit true tag expr in switch](https://go-review.googlesource.com/c/go/+/123378)
 
-### [google/go-cloud](https://github.com/google/go-cloud)
+### [typeUnparen](https://go-critic.github.io/overview.html#typeUnparen-ref)
 
-1. [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260) `boolExprSimplify`, `typeSwitchVar`, `ifElseChain`
+1. {**[golang/go](https://github.com/golang/go)**} [archive/tar: remore redundant parens in type expressions](https://go-review.googlesource.com/c/go/+/123379)
+1. {**[upspin/upspin](https://github.com/upspin/upspin)**} [pack/internal/packtest: remove redundant parens in type conv](https://github.com/upspin/upspin/commit/1e73992b518722f8eb59d37ad70df02179063d76)
+1. {**[ncw/rclone](https://github.com/ncw/rclone)**} [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440)
 
-### [ncw/rclone](https://github.com/ncw/rclone)
+### [unlambda](https://go-critic.github.io/overview.html#unlambda-ref)
 
-1. [all: fix go-critic linter suggestions](https://github.com/ncw/rclone/pull/2440) `underef`, `namedConst`, `unslice`, `builtinShadow`, `typeUnparen`
+1. {**[golang/go](https://github.com/golang/go)**} [strings, bytes: avoid unnecessary function literals](https://go-review.googlesource.com/c/go/+/127756)
+1. {**[gobufallo/buffalo](https://github.com/gobuffalo/buffalo)**} [internal/release,render: remove redundant func wrapping](https://github.com/gobuffalo/buffalo/pull/1211)
+1. {**[openshift/origin](https://github.com/openshift/origin)**} [apps: replace func lits with wrapped func value](https://github.com/openshift/origin/pull/20541)
 
-### [go-gitea/gitea](https://github.com/go-gitea/gitea)
+### [sloppyLen](https://go-critic.github.io/overview.html#sloppyLen-ref)
 
-1. [Remove check for negative length](https://github.com/go-gitea/gitea/pull/5120) `sloppyLen`
-1. [Use type switch](https://github.com/go-gitea/gitea/pull/5122) `typeSwitchVar`
-1. [Remove duplicated if bodies](https://github.com/go-gitea/gitea/pull/5121) `dupBranchBody`
-1. [Make switch more clear](https://github.com/go-gitea/gitea/pull/5119) `defaultCaseOrder`
+1. {**[gobufallo/buffalo](https://github.com/gobuffalo/buffalo)**} [buffalo/cmd: make len comparison more clear](https://github.com/gobuffalo/buffalo/pull/1212)
+1. {**[graphql-go/graphql](https://github.com/graphql-go/graphql)**} [replace len(x)<=v with len(x)==v](https://github.com/graphql-go/graphql/pull/374)
+1. {**[securego/gosec](https://github.com/securego/gosec)**} [replace len(x)<=0 with len(x)==0](https://github.com/securego/gosec/pull/220)
+1. {**[go-gitea/gitea](https://github.com/go-gitea/gitea)**} [Remove check for negative length](https://github.com/go-gitea/gitea/pull/5120)
+
+### [typeSwitchVar](https://go-critic.github.io/overview.html#typeSwitchVar-ref)
+
+1. {**[graphql-go/graphql](https://github.com/graphql-go/graphql)**} [use type switch with var binding](https://github.com/graphql-go/graphql/pull/372)
+1. {**[intel-go/nff-go](https://github.com/intel-go/nff-go)**} [Modified style in merge function](https://github.com/intel-go/nff-go/pull/338)
+1. {**[ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)**} [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267)
+1. {**[google/go-cloud](https://github.com/google/go-cloud)**} [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260)
+1. {**[go-gitea/gitea](https://github.com/go-gitea/gitea)**} [Use type switch](https://github.com/go-gitea/gitea/pull/5122)
+
+### [regexpMust](https://go-critic.github.io/overview.html#regexpMust-ref)
+
+1. {**[graphql-go/graphql](https://github.com/graphql-go/graphql)**} [replace regexp.Compile with regexp.MustCompile](https://github.com/graphql-go/graphql/pull/373)
+
+### [singleCaseSwitch](https://go-critic.github.io/overview.html#regexpMust-ref)
+
+1. {**[graphql-go/graphql](https://github.com/graphql-go/graphql)**} [simplify single case type switches](https://github.com/graphql-go/graphql/pull/375)
+1. {**[mvdan/sh](https://github.com/mvdan/sh)**} [interp,syntax: replace single case switches](https://github.com/mvdan/sh/pull/255)
+1. {**[go-reform/reform](https://github.com/go-reform/reform/pull/166)**} [parse: replace 1 case switch with if](https://github.com/go-reform/reform/pull/166)
+1. {**[minio/minio](https://github.com/minio/minio)**} [simplifying if-else chains to switches](https://github.com/minio/minio/pull/6208)
+1. {**[ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)**} [all: simplify switches](https://github.com/ethereum/go-ethereum/pull/17267)
+
+### [assignOp](https://go-critic.github.io/overview.html#assignOp-ref)
+
+1. {**[graphql-go/graphql](https://github.com/graphql-go/graphql)**} [simplify assignments with op= syntax](https://github.com/graphql-go/graphql/pull/376)
+
+## Performance
+
+### [appendCombine](https://go-critic.github.io/overview.html#appendCombine-ref)
+
+1. {**[golang/go](https://github.com/golang/go)**} [net: combine append calls in reverseaddr](https://golang.org/cl/117615)
+
+### [rangeValCopy](https://go-critic.github.io/overview.html#rangevalcopy)
+
+1. {**[golang/go](https://github.com/golang/go)**} [cmd/link/internal/ld: avoid Reloc copies in range loops](https://golang.org/cl/113636)
+
+### [rangeExprCopy](https://go-critic.github.io/overview.html#rangeExprCopy-ref)
+
+1. {**[mvdan/sh](https://github.com/mvdan/sh)**} [interp: avoid redundant array copies](https://github.com/mvdan/sh/pull/253)
+1. {**[ethereum/go-ethereum](https://github.com/ethereum/go-ethereum)**} [all: avoid copying arrays in loops](https://github.com/ethereum/go-ethereum/pull/17265)
