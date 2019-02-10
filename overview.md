@@ -564,7 +564,9 @@ func f(in int, out *int) (err error) {}
 Checker parameters:
 <ul>
 <li>
+
   `@captLocal.paramsOnly` whether to restrict checker to params only (default true)
+
 </li>
 
 </ul>
@@ -950,7 +952,9 @@ if cond1 {
 Checker parameters:
 <ul>
 <li>
+
   `@elseif.skipBalanced` whether to skip balanced if-else pairs (default true)
+
 </li>
 
 </ul>
@@ -1180,7 +1184,9 @@ func f(x *[1024]int) {}
 Checker parameters:
 <ul>
 <li>
+
   `@hugeParam.sizeThreshold` size in bytes that makes the warning trigger (default 80)
+
 </li>
 
 </ul>
@@ -1370,7 +1376,9 @@ for _, v := range a {
 Checker parameters:
 <ul>
 <li>
+
   `@nestingReduce.bodyWidth` min number of statements inside a branch to trigger a warning (default 5)
+
 </li>
 
 </ul>
@@ -1544,10 +1552,14 @@ for _, x := range &xs { // No copy
 Checker parameters:
 <ul>
 <li>
+
   `@rangeExprCopy.sizeThreshold` size in bytes that makes the warning trigger (default 512)
+
 </li>
 <li>
+
   `@rangeExprCopy.skipTestFuncs` whether to check test functions (default true)
+
 </li>
 
 </ul>
@@ -1586,10 +1598,14 @@ for i := range xs {
 Checker parameters:
 <ul>
 <li>
+
   `@rangeValCopy.sizeThreshold` size in bytes that makes the warning trigger (default 128)
+
 </li>
 <li>
+
   `@rangeValCopy.skipTestFuncs` whether to check test functions (default true)
+
 </li>
 
 </ul>
@@ -1882,7 +1898,9 @@ v := a[5]
 Checker parameters:
 <ul>
 <li>
+
   `@underef.skipRecvDeref` whether to skip (*x).method() calls where x is a pointer receiver (default true)
+
 </li>
 
 </ul>
@@ -1974,7 +1992,9 @@ func f() (x, y float64)
 Checker parameters:
 <ul>
 <li>
+
   `@unnamedResult.checkExported` whether to check exported functions (default false)
+
 </li>
 
 </ul>
