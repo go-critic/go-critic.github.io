@@ -564,6 +564,7 @@ func f(in int, out *int) (err error) {}
 Checker parameters:
 * `@captLocal.paramsOnly` whether to restrict checker to params only (default true)
 
+<br>
 
 
   <a name="caseOrder-ref"></a>
@@ -946,6 +947,7 @@ if cond1 {
 Checker parameters:
 * `@elseif.skipBalanced` whether to skip balanced if-else pairs (default true)
 
+<br>
 
 
   <a name="emptyFallthrough-ref"></a>
@@ -1172,6 +1174,7 @@ func f(x *[1024]int) {}
 Checker parameters:
 * `@hugeParam.sizeThreshold` size in bytes that makes the warning trigger (default 80)
 
+<br>
 
 
   <a name="ifElseChain-ref"></a>
@@ -1358,6 +1361,7 @@ for _, v := range a {
 Checker parameters:
 * `@nestingReduce.bodyWidth` min number of statements inside a branch to trigger a warning (default 5)
 
+<br>
 
 
   <a name="nilValReturn-ref"></a>
@@ -1529,6 +1533,7 @@ Checker parameters:
 * `@rangeExprCopy.sizeThreshold` size in bytes that makes the warning trigger (default 512)
 * `@rangeExprCopy.skipTestFuncs` whether to check test functions (default true)
 
+<br>
 
 
   <a name="rangeValCopy-ref"></a>
@@ -1565,6 +1570,7 @@ Checker parameters:
 * `@rangeValCopy.sizeThreshold` size in bytes that makes the warning trigger (default 128)
 * `@rangeValCopy.skipTestFuncs` whether to check test functions (default true)
 
+<br>
 
 
   <a name="regexpMust-ref"></a>
@@ -1854,6 +1860,7 @@ v := a[5]
 Checker parameters:
 * `@underef.skipRecvDeref` whether to skip (*x).method() calls where x is a pointer receiver (default true)
 
+<br>
 
 
   <a name="unlabelStmt-ref"></a>
@@ -1942,6 +1949,7 @@ func f() (x, y float64)
 Checker parameters:
 * `@unnamedResult.checkExported` whether to check exported functions (default false)
 
+<br>
 
 
   <a name="unnecessaryBlock-ref"></a>
