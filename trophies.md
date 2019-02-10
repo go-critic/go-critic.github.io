@@ -95,6 +95,9 @@ It's virtually impossible to keep track of all contributions were made.
 1. {**[src-d/gitbase](https://github.com/src-d/gitbase)**} [internal/rule: simplify slice expression to sliced value itself](https://github.com/src-d/gitbase/pull/503)
 1. {**[Microsoft/opengcs](https://github.com/Microsoft/opengcs)**} [service/gcsutil/gcstools: simplify slice expression to sliced value itself](https://github.com/Microsoft/opengcs/pull/260)
 1. {**[future-architect/vuls](https://github.com/future-architect/vuls)**} [commands: simplify slice expression to sliced value itself](https://github.com/future-architect/vuls/pull/715)
+1. {**[grafeas/grafeas](https://github.com/grafeas/grafeas)**} [Simplify slicing of s to s where s is a slice](https://github.com/grafeas/grafeas/pull/226)
+1. {**[influxdata/influxdb](https://github.com/influxdata/influxdb)**} [Simplify slicing of s to s where s is a slice](https://github.com/influxdata/influxdb/pull/10332)
+1. {**[sourcegraph/sourcegraph](https://github.com/sourcegraph/sourcegraph)**} [Simplify slicing of s to s where s is a slice](https://github.com/sourcegraph/sourcegraph/pull/267)
 
 ### [boolExprSimplify](https://go-critic.github.io/overview.html#boolExprSimplify-ref)
 
@@ -162,6 +165,7 @@ It's virtually impossible to keep track of all contributions were made.
 1. {**[Microsoft/KubeGPU](https://github.com/Microsoft/KubeGPU)**} [plugins: simplify `x = x <op> y` to `x <op>= y`](https://github.com/Microsoft/KubeGPU/pull/40)
 1. {**[future-architect/vuls](https://github.com/future-architect/vuls)**} [report: simplify `x = x <op> y` to `x <op>= y`](https://github.com/future-architect/vuls/pull/716)
 1. {**[golang/dep](https://github.com/golang/dep)**} [gps: simplify `x = x <op> y` to `x <op>= y`](https://github.com/golang/dep/pull/2028)
+1. {**[lucas-clemente/quic-go](https://github.com/lucas-clemente/quic-go)**} [simplify `x = x <op> ...` to `x <op>= ...`](https://github.com/lucas-clemente/quic-go/pull/1538)
 
 ## Performance
 
