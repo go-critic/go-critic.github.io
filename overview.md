@@ -32,6 +32,11 @@ They also detect code that may be correct, but looks suspicious.
   <td>Detects suspicious arguments order</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
+    <a href="#badCall-ref">badCall</a>
+  </td>
+  <td>Detects suspicious function calls</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
     <a href="#badCond-ref">badCond</a>
   </td>
   <td>Detects suspicious condition expressions</td>
@@ -77,6 +82,11 @@ They also detect code that may be correct, but looks suspicious.
   <td>Detects suspicious duplicated sub-expressions</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
+    <a href="#evalOrder-ref">evalOrder</a>
+  </td>
+  <td>Detects unwanted dependencies on the evaluation order</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
     <a href="#exitAfterDefer-ref">exitAfterDefer</a>
   </td>
   <td>Detects calls to exit/fatal inside functions that use defer</td>
@@ -90,6 +100,11 @@ They also detect code that may be correct, but looks suspicious.
     <a href="#flagName-ref">flagName</a>
   </td>
   <td>Detects flag names with whitespace</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#mapKey-ref">mapKey</a>
+  </td>
+  <td>Detects suspicious map literal keys</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#nilValReturn-ref">nilValReturn</a>
@@ -107,9 +122,19 @@ They also detect code that may be correct, but looks suspicious.
   <td>Detects various off-by-one kind of errors</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
+    <a href="#regexpPattern-ref">regexpPattern</a>
+  </td>
+  <td>Detects suspicious regexp patterns</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
     <a href="#sloppyReassign-ref">sloppyReassign</a>
   </td>
   <td>Detects suspicious/confusing re-assignments</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#truncateCmp-ref">truncateCmp</a>
+  </td>
+  <td>Detects potential truncation issues when comparing ints of different sizes</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#weakCond-ref">weakCond</a>
@@ -170,6 +195,11 @@ with another one that is considered more idiomatic or simple.
   </td>
   <td>Detects comments that silence go lint complaints about doc-comment</td>
 </tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#dupImport-ref">dupImport</a>
+  </td>
+  <td>Detects multiple imports of the same package under different aliases</td>
+</tr><tr>
   <td nowrap>:heavy_check_mark:
     <a href="#elseif-ref">elseif</a>
   </td>
@@ -214,6 +244,11 @@ with another one that is considered more idiomatic or simple.
     <a href="#nestingReduce-ref">nestingReduce</a>
   </td>
   <td>Finds where nesting level could be reduced</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#newDeref-ref">newDeref</a>
+  </td>
+  <td>Detects immediate dereferencing of `new` expressions</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#paramTypeCombine-ref">paramTypeCombine</a>
@@ -299,6 +334,11 @@ with another one that is considered more idiomatic or simple.
     <a href="#valSwap-ref">valSwap</a>
   </td>
   <td>Detects value swapping code that are not using parallel assignment</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#whyNoLint-ref">whyNoLint</a>
+  </td>
+  <td>Ensures that `//nolint` comments include an explanation</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#wrapperFunc-ref">wrapperFunc</a>
@@ -453,6 +493,31 @@ x = x * 2
 **After:**
 ```go
 x *= 2
+```
+
+
+
+  <a name="badCall-ref"></a>
+## badCall
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects suspicious function calls.
+
+
+
+
+
+**Before:**
+```go
+strings.Replace(s, from, to, 0)
+```
+
+**After:**
+```go
+strings.Replace(s, from, to, -1)
 ```
 
 
@@ -892,6 +957,36 @@ case ys[0], ys[1], ys[2], ys[3], ys[4]:
 
 
 
+  <a name="dupImport-ref"></a>
+## dupImport
+
+[
+  **style**
+  **experimental** ]
+
+Detects multiple imports of the same package under different aliases.
+
+
+
+
+
+**Before:**
+```go
+import (
+	"fmt"
+	priting "fmt" // Imported the second time
+)
+```
+
+**After:**
+```go
+import(
+	"fmt"
+)
+```
+
+
+
   <a name="dupSubExpr-ref"></a>
 ## dupSubExpr
 
@@ -1040,6 +1135,32 @@ strings.ToLower(x) == strings.ToLower(y)
 **After:**
 ```go
 strings.EqualFold(x, y)
+```
+
+
+
+  <a name="evalOrder-ref"></a>
+## evalOrder
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects unwanted dependencies on the evaluation order.
+
+
+
+
+
+**Before:**
+```go
+return x, f(&x)
+```
+
+**After:**
+```go
+err := f(&x)
+return x, err
 ```
 
 
@@ -1312,6 +1433,37 @@ if cond {
 
 
 
+  <a name="mapKey-ref"></a>
+## mapKey
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects suspicious map literal keys.
+
+
+
+
+
+**Before:**
+```go
+_ = map[string]int{
+	"foo": 1,
+	"bar ": 2,
+}
+```
+
+**After:**
+```go
+_ = map[string]int{
+	"foo": 1,
+	"bar": 2,
+}
+```
+
+
+
   <a name="methodExprCall-ref"></a>
 ## methodExprCall
 
@@ -1382,6 +1534,31 @@ Checker parameters:
 </li>
 
 </ul>
+
+
+  <a name="newDeref-ref"></a>
+## newDeref
+
+[
+  **style**
+  **experimental** ]
+
+Detects immediate dereferencing of `new` expressions.
+
+
+
+
+
+**Before:**
+```go
+x := *new(bool)
+```
+
+**After:**
+```go
+x := false
+```
+
 
 
   <a name="nilValReturn-ref"></a>
@@ -1635,6 +1812,31 @@ re := regexp.MustCompile("const pattern")
 
 
 
+  <a name="regexpPattern-ref"></a>
+## regexpPattern
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects suspicious regexp patterns.
+
+
+
+
+
+**Before:**
+```go
+regexp.MustCompile(`google.com|yandex.ru`)
+```
+
+**After:**
+```go
+regexp.MustCompile(`google\.com|yandex\.ru`)
+```
+
+
+
   <a name="singleCaseSwitch-ref"></a>
 ## singleCaseSwitch
 
@@ -1767,6 +1969,45 @@ case x > y:
 }
 ```
 
+
+
+  <a name="truncateCmp-ref"></a>
+## truncateCmp
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects potential truncation issues when comparing ints of different sizes.
+
+
+
+
+
+**Before:**
+```go
+func f(x int32, y int16) bool {
+  return int16(x) < y
+}
+```
+
+**After:**
+```go
+func f(x int32, int16) bool {
+  return x < int32(y)
+}
+```
+
+
+Checker parameters:
+<ul>
+<li>
+
+  `@truncateCmp.skipArchDependent` whether to skip int/uint/uintptr types (default true)
+
+</li>
+
+</ul>
 
 
   <a name="typeAssertChain-ref"></a>
@@ -2104,6 +2345,31 @@ xs != nil && xs[0] != nil
 **After:**
 ```go
 len(xs) != 0 && xs[0] != nil
+```
+
+
+
+  <a name="whyNoLint-ref"></a>
+## whyNoLint
+
+[
+  **style**
+  **experimental** ]
+
+Ensures that `//nolint` comments include an explanation.
+
+
+
+
+
+**Before:**
+```go
+//nolint
+```
+
+**After:**
+```go
+//nolint // reason
 ```
 
 
