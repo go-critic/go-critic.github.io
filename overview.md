@@ -2182,14 +2182,14 @@ Detects redundant type assertions.
 
 **Before:**
 ```go
-function f(r io.Reader) interface{} {
+func f(r io.Reader) interface{} {
 	return r.(interface{})
 }
 ```
 
 **After:**
 ```go
-function f(r io.Reader) interface{} {
+func f(r io.Reader) interface{} {
 	return r
 }
 ```
