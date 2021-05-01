@@ -265,6 +265,11 @@ with another one that is considered more idiomatic or simple.
   </td>
   <td>Detects hex literals that have mixed case letter digits</td>
 </tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#httpNoBody-ref">httpNoBody</a>
+  </td>
+  <td>Detects nil usages in http.NewRequest calls, suggesting http.NoBody as an alternative</td>
+</tr><tr>
   <td nowrap>:heavy_check_mark:
     <a href="#ifElseChain-ref">ifElseChain</a>
   </td>
@@ -339,6 +344,11 @@ with another one that is considered more idiomatic or simple.
     <a href="#switchTrue-ref">switchTrue</a>
   </td>
   <td>Detects switch-over-bool statements that use explicit `true` tag value</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#tooManyResultsChecker-ref">tooManyResultsChecker</a>
+  </td>
+  <td>Detects function with too many results</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#typeAssertChain-ref">typeAssertChain</a>
@@ -443,6 +453,11 @@ can make your code run slower than it could be.
     <a href="#indexAlloc-ref">indexAlloc</a>
   </td>
   <td>Detects strings.Index calls that may cause unwanted allocs</td>
+</tr><tr>
+  <td nowrap>:white_check_mark:
+    <a href="#preferDecodeRune-ref">preferDecodeRune</a>
+  </td>
+  <td>Detects expressions like []rune(s)[0] that may cause unwanted rune slice allocation</td>
 </tr><tr>
   <td nowrap>:white_check_mark:
     <a href="#rangeExprCopy-ref">rangeExprCopy</a>
@@ -1256,7 +1271,6 @@ Detects empty string checks that can be written more idiomatically.
 
 
 
-> See https://dmitri.shuralyov.com/idiomatic-go#empty-string-check.
 
 **Before:**
 ```go
@@ -1385,11 +1399,9 @@ filepath.Join("dir", filename)
 
 Detects immediate dereferencing of `flag` package pointers.
 
-Suggests to use pointer to array to avoid the copy using `&` on range expression.
 
 
-> Dereferencing returned pointers will lead to hard to find errors
-where flag values are not updated after flag.Parse().
+
 
 **Before:**
 ```go
@@ -1398,8 +1410,7 @@ b := *flag.Bool("b", false, "b docs")
 
 **After:**
 ```go
-var b bool
-flag.BoolVar(&b, "b", false, "b docs")
+var b bool; flag.BoolVar(&b, "b", false, "b docs")
 ```
 
 
@@ -1455,6 +1466,31 @@ x := 0x12
 y := 0xff
 // (B)
 y := 0xFF
+```
+
+
+
+  <a name="httpNoBody-ref"></a>
+## httpNoBody
+
+[
+  **style**
+  **experimental** ]
+
+Detects nil usages in http.NewRequest calls, suggesting http.NoBody as an alternative.
+
+
+
+
+
+**Before:**
+```go
+http.NewRequest("GET", url, nil)
+```
+
+**After:**
+```go
+http.NewRequest("GET", url, http.NoBody)
 ```
 
 
@@ -1847,6 +1883,32 @@ func foo(a, b, c, d, e, f, g int) {}
 
 
 
+  <a name="preferDecodeRune-ref"></a>
+## preferDecodeRune
+
+[
+  **performance**
+  **experimental** ]
+
+Detects expressions like []rune(s)[0] that may cause unwanted rune slice allocation.
+
+
+
+
+> See Go issue for details: https://github.com/golang/go/issues/45260
+
+**Before:**
+```go
+r := []rune(s)[0]
+```
+
+**After:**
+```go
+r, _ := utf8.DecodeRuneInString(s)
+```
+
+
+
   <a name="ptrToRefParam-ref"></a>
 ## ptrToRefParam
 
@@ -2129,14 +2191,11 @@ Detects usage of `len` when result is obvious or doesn't make sense.
 
 **Before:**
 ```go
-len(arr) >= 0 // Sloppy
-len(arr) <= 0 // Sloppy
-len(arr) < 0  // Doesn't make sense at all
+len(arr) <= 0
 ```
 
 **After:**
 ```go
-len(arr) > 0
 len(arr) == 0
 ```
 
@@ -2284,18 +2343,50 @@ Detects switch-over-bool statements that use explicit `true` tag value.
 
 **Before:**
 ```go
-switch true {
-case x > y:
-}
+switch true {...}
 ```
 
 **After:**
 ```go
-switch {
-case x > y:
-}
+switch {...}
 ```
 
+
+
+  <a name="tooManyResultsChecker-ref"></a>
+## tooManyResultsChecker
+
+[
+  **style**
+  **opinionated**
+  **experimental** ]
+
+Detects function with too many results.
+
+
+
+
+
+**Before:**
+```go
+func fn() (a, b, c, d float32, _ int, _ bool)
+```
+
+**After:**
+```go
+func fn() (resultStruct, bool)
+```
+
+
+Checker parameters:
+<ul>
+<li>
+
+  `@tooManyResultsChecker.maxResults` maximum number of results (default 5)
+
+</li>
+
+</ul>
 
 
   <a name="truncateCmp-ref"></a>
@@ -2694,9 +2785,7 @@ Detects value swapping code that are not using parallel assignment.
 
 **Before:**
 ```go
-tmp := *x
-*x = *y
-*y = tmp
+*tmp = *x; *x = *y; *y = *tmp
 ```
 
 **After:**
