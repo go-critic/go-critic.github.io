@@ -20,43 +20,43 @@ They also detect code that may be correct, but looks suspicious.
 
 |Name|Short description|
 |--- |--- |
-|:heavy_check_mark:<a href="#appendAssign-ref">appendAssign</a>|Detects suspicious append result assignments|
-|:heavy_check_mark:<a href="#argOrder-ref">argOrder</a>|Detects suspicious arguments order|
-|:heavy_check_mark:<a href="#badCall-ref">badCall</a>|Detects suspicious function calls|
-|:heavy_check_mark:<a href="#badCond-ref">badCond</a>|Detects suspicious condition expressions|
-|:white_check_mark:<a href="#badLock-ref">badLock</a>|Detects suspicious mutex lock/unlock operations|
-|:white_check_mark:<a href="#badRegexp-ref">badRegexp</a>|Detects suspicious regexp patterns|
-|:white_check_mark:<a href="#builtinShadowDecl-ref">builtinShadowDecl</a>|Detects top-level declarations that shadow the predeclared identifiers|
-|:heavy_check_mark:<a href="#caseOrder-ref">caseOrder</a>|Detects erroneous case order inside switch statements|
-|:heavy_check_mark:<a href="#codegenComment-ref">codegenComment</a>|Detects malformed 'code generated' file comments|
-|:white_check_mark:<a href="#commentedOutCode-ref">commentedOutCode</a>|Detects commented-out code inside function bodies|
-|:heavy_check_mark:<a href="#deprecatedComment-ref">deprecatedComment</a>|Detects malformed 'deprecated' doc-comments|
-|:heavy_check_mark:<a href="#dupArg-ref">dupArg</a>|Detects suspicious duplicated arguments|
-|:heavy_check_mark:<a href="#dupBranchBody-ref">dupBranchBody</a>|Detects duplicated branch bodies inside conditional statements|
-|:heavy_check_mark:<a href="#dupCase-ref">dupCase</a>|Detects duplicated case clauses inside switch or select statements|
-|:heavy_check_mark:<a href="#dupSubExpr-ref">dupSubExpr</a>|Detects suspicious duplicated sub-expressions|
-|:white_check_mark:<a href="#emptyDecl-ref">emptyDecl</a>|Detects suspicious empty declarations blocks|
-|:white_check_mark:<a href="#evalOrder-ref">evalOrder</a>|Detects unwanted dependencies on the evaluation order|
-|:heavy_check_mark:<a href="#exitAfterDefer-ref">exitAfterDefer</a>|Detects calls to exit/fatal inside functions that use defer|
-|:white_check_mark:<a href="#externalErrorReassign-ref">externalErrorReassign</a>|Detects suspicious reassigment of error from another package|
-|:white_check_mark:<a href="#filepathJoin-ref">filepathJoin</a>|Detects problems in filepath.Join() function calls|
-|:heavy_check_mark:<a href="#flagDeref-ref">flagDeref</a>|Detects immediate dereferencing of `flag` package pointers|
-|:heavy_check_mark:<a href="#flagName-ref">flagName</a>|Detects suspicious flag names|
-|:heavy_check_mark:<a href="#mapKey-ref">mapKey</a>|Detects suspicious map literal keys|
-|:white_check_mark:<a href="#nilValReturn-ref">nilValReturn</a>|Detects return statements those results evaluate to nil|
-|:heavy_check_mark:<a href="#offBy1-ref">offBy1</a>|Detects various off-by-one kind of errors|
-|:white_check_mark:<a href="#regexpPattern-ref">regexpPattern</a>|Detects suspicious regexp patterns|
-|:white_check_mark:<a href="#returnAfterHttpError-ref">returnAfterHttpError</a>|Detects suspicious http.Error call without following return|
-|:white_check_mark:<a href="#sloppyReassign-ref">sloppyReassign</a>|Detects suspicious/confusing re-assignments|
-|:heavy_check_mark:<a href="#sloppyTypeAssert-ref">sloppyTypeAssert</a>|Detects redundant type assertions|
-|:white_check_mark:<a href="#sortSlice-ref">sortSlice</a>|Detects suspicious sort.Slice calls|
-|:white_check_mark:<a href="#sprintfQuotedString-ref">sprintfQuotedString</a>|Detects "%s" formatting directives that can be replaced with %q|
-|:white_check_mark:<a href="#sqlQuery-ref">sqlQuery</a>|Detects issue in Query() and Exec() calls|
-|:white_check_mark:<a href="#suspiciousSorting-ref">suspiciousSorting</a>|Detects bad usage of sort package|
-|:white_check_mark:<a href="#syncMapLoadAndDelete-ref">syncMapLoadAndDelete</a>|Detects sync.Map load+delete operations that can be replaced with LoadAndDelete|
-|:white_check_mark:<a href="#truncateCmp-ref">truncateCmp</a>|Detects potential truncation issues when comparing ints of different sizes|
-|:white_check_mark:<a href="#unnecessaryDefer-ref">unnecessaryDefer</a>|Detects redundantly deferred calls|
-|:white_check_mark:<a href="#weakCond-ref">weakCond</a>|Detects conditions that are unsafe due to not being exhaustive|/tr>
+|:heavy_check_mark:[appendAssign](#appendAssign-ref)|Detects suspicious append result assignments|
+|:heavy_check_mark:[argOrder](#argOrder-ref)|Detects suspicious arguments order|
+|:heavy_check_mark:[badCall](#badCall-ref)|Detects suspicious function calls|
+|:heavy_check_mark:[badCond](#badCond-ref)|Detects suspicious condition expressions|
+|:white_check_mark:[badLock](#badLock-ref)|Detects suspicious mutex lock/unlock operations|
+|:white_check_mark:[badRegexp](#badRegexp-ref)|Detects suspicious regexp patterns|
+|:white_check_mark:[builtinShadowDecl](#builtinShadowDecl-ref)|Detects top-level declarations that shadow the predeclared identifiers|
+|:heavy_check_mark:[caseOrder](#caseOrder-ref)|Detects erroneous case order inside switch statements|
+|:heavy_check_mark:[codegenComment](#codegenComment-ref)|Detects malformed 'code generated' file comments|
+|:white_check_mark:[commentedOutCode](#commentedOutCode-ref)|Detects commented-out code inside function bodies|
+|:heavy_check_mark:[deprecatedComment](#deprecatedComment-ref)|Detects malformed 'deprecated' doc-comments|
+|:heavy_check_mark:[dupArg](#dupArg-ref)|Detects suspicious duplicated arguments|
+|:heavy_check_mark:[dupBranchBody](#dupBranchBody-ref)|Detects duplicated branch bodies inside conditional statements|
+|:heavy_check_mark:[dupCase](#dupCase-ref)|Detects duplicated case clauses inside switch or select statements|
+|:heavy_check_mark:[dupSubExpr](#dupSubExpr-ref)|Detects suspicious duplicated sub-expressions|
+|:white_check_mark:[emptyDecl](#emptyDecl-ref)|Detects suspicious empty declarations blocks|
+|:white_check_mark:[evalOrder](#evalOrder-ref)|Detects unwanted dependencies on the evaluation order|
+|:heavy_check_mark:[exitAfterDefer](#exitAfterDefer-ref)|Detects calls to exit/fatal inside functions that use defer|
+|:white_check_mark:[externalErrorReassign](#externalErrorReassign-ref)|Detects suspicious reassigment of error from another package|
+|:white_check_mark:[filepathJoin](#filepathJoin-ref)|Detects problems in `filepath.Join()` function calls|
+|:heavy_check_mark:[flagDeref](#flagDeref-ref)|Detects immediate dereferencing of `flag` package pointers|
+|:heavy_check_mark:[flagName](#flagName-ref)|Detects suspicious flag names|
+|:heavy_check_mark:[mapKey](#mapKey-ref)|Detects suspicious map literal keys|
+|:white_check_mark:[nilValReturn](#nilValReturn-ref)|Detects return statements those results evaluate to nil|
+|:heavy_check_mark:[offBy1](#offBy1-ref)|Detects various off-by-one kind of errors|
+|:white_check_mark:[regexpPattern](#regexpPattern-ref)|Detects suspicious regexp patterns|
+|:white_check_mark:[returnAfterHttpError](#returnAfterHttpError-ref)|Detects suspicious http.Error call without following return|
+|:white_check_mark:[sloppyReassign](#sloppyReassign-ref)|Detects suspicious/confusing re-assignments|
+|:heavy_check_mark:[sloppyTypeAssert](#sloppyTypeAssert-ref)|Detects redundant type assertions|
+|:white_check_mark:[sortSlice](#sortSlice-ref)|Detects suspicious sort.Slice calls|
+|:white_check_mark:[sprintfQuotedString](#sprintfQuotedString-ref)|Detects "%s" formatting directives that can be replaced with %q|
+|:white_check_mark:[sqlQuery](#sqlQuery-ref)|Detects issue in Query() and Exec() calls|
+|:white_check_mark:[suspiciousSorting](#suspiciousSorting-ref)|Detects bad usage of sort package|
+|:white_check_mark:[syncMapLoadAndDelete](#syncMapLoadAndDelete-ref)|Detects sync.Map load+delete operations that can be replaced with LoadAndDelete|
+|:white_check_mark:[truncateCmp](#truncateCmp-ref)|Detects potential truncation issues when comparing ints of different sizes|
+|:white_check_mark:[unnecessaryDefer](#unnecessaryDefer-ref)|Detects redundantly deferred calls|
+|:white_check_mark:[weakCond](#weakCond-ref)|Detects conditions that are unsafe due to not being exhaustive|/tr>
 
 ### Checkers from the "style" group
 
@@ -67,57 +67,57 @@ with another one that is considered more idiomatic or simple.
 
 |Name|Short description|
 |--- |--- |
-|:heavy_check_mark:<a href="#assignOp-ref">assignOp</a>|Detects assignments that can be simplified by using assignment operators|
-|:white_check_mark:<a href="#boolExprSimplify-ref">boolExprSimplify</a>|Detects bool expressions that can be simplified|
-|:white_check_mark:<a href="#builtinShadow-ref">builtinShadow</a>|Detects when predeclared identifiers are shadowed in assignments|
-|:heavy_check_mark:<a href="#captLocal-ref">captLocal</a>|Detects capitalized names for local variables|
-|:heavy_check_mark:<a href="#commentFormatting-ref">commentFormatting</a>|Detects comments with non-idiomatic formatting|
-|:white_check_mark:<a href="#commentedOutImport-ref">commentedOutImport</a>|Detects commented-out imports|
-|:heavy_check_mark:<a href="#defaultCaseOrder-ref">defaultCaseOrder</a>|Detects when default case in switch isn't on 1st or last position|
-|:white_check_mark:<a href="#deferUnlambda-ref">deferUnlambda</a>|Detects deferred function literals that can be simplified|
-|:white_check_mark:<a href="#docStub-ref">docStub</a>|Detects comments that silence go lint complaints about doc-comment|
-|:white_check_mark:<a href="#dupImport-ref">dupImport</a>|Detects multiple imports of the same package under different aliases|
-|:heavy_check_mark:<a href="#elseif-ref">elseif</a>|Detects else with nested if statement that can be replaced with else-if|
-|:white_check_mark:<a href="#emptyFallthrough-ref">emptyFallthrough</a>|Detects fallthrough that can be avoided by using multi case values|
-|:white_check_mark:<a href="#emptyStringTest-ref">emptyStringTest</a>|Detects empty string checks that can be written more idiomatically|
-|:white_check_mark:<a href="#exposedSyncMutex-ref">exposedSyncMutex</a>|Detects exposed methods from sync.Mutex and sync.RWMutex|
-|:white_check_mark:<a href="#hexLiteral-ref">hexLiteral</a>|Detects hex literals that have mixed case letter digits|
-|:white_check_mark:<a href="#httpNoBody-ref">httpNoBody</a>|Detects nil usages in http.NewRequest calls, suggesting http.NoBody as an alternative|
-|:heavy_check_mark:<a href="#ifElseChain-ref">ifElseChain</a>|Detects repeated if-else statements and suggests to replace them with switch statement|
-|:white_check_mark:<a href="#importShadow-ref">importShadow</a>|Detects when imported package names shadowed in the assignments|
-|:white_check_mark:<a href="#initClause-ref">initClause</a>|Detects non-assignment statements inside if/switch init clause|
-|:white_check_mark:<a href="#ioutilDeprecated-ref">ioutilDeprecated</a>|Detects deprecated io/ioutil package usages|
-|:white_check_mark:<a href="#methodExprCall-ref">methodExprCall</a>|Detects method expression call that can be replaced with a method call|
-|:white_check_mark:<a href="#nestingReduce-ref">nestingReduce</a>|Finds where nesting level could be reduced|
-|:heavy_check_mark:<a href="#newDeref-ref">newDeref</a>|Detects immediate dereferencing of `new` expressions|
-|:white_check_mark:<a href="#octalLiteral-ref">octalLiteral</a>|Detects old-style octal literals|
-|:white_check_mark:<a href="#paramTypeCombine-ref">paramTypeCombine</a>|Detects if function parameters could be combined by type and suggest the way to do it|
-|:white_check_mark:<a href="#preferFilepathJoin-ref">preferFilepathJoin</a>|Detects concatenation with os.PathSeparator which can be replaced with filepath.Join|
-|:white_check_mark:<a href="#ptrToRefParam-ref">ptrToRefParam</a>|Detects input and output parameters that have a type of pointer to referential type|
-|:white_check_mark:<a href="#redundantSprint-ref">redundantSprint</a>|Detects redundant fmt.Sprint calls|
-|:heavy_check_mark:<a href="#regexpMust-ref">regexpMust</a>|Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`|
-|:white_check_mark:<a href="#regexpSimplify-ref">regexpSimplify</a>|Detects regexp patterns that can be simplified|
-|:white_check_mark:<a href="#ruleguard-ref">ruleguard</a>|Runs user-defined rules using ruleguard linter|
-|:heavy_check_mark:<a href="#singleCaseSwitch-ref">singleCaseSwitch</a>|Detects switch statements that could be better written as if statement|
-|:heavy_check_mark:<a href="#sloppyLen-ref">sloppyLen</a>|Detects usage of `len` when result is obvious or doesn't make sense|
-|:white_check_mark:<a href="#stringConcatSimplify-ref">stringConcatSimplify</a>|Detects string concat operations that can be simplified|
-|:heavy_check_mark:<a href="#switchTrue-ref">switchTrue</a>|Detects switch-over-bool statements that use explicit `true` tag value|
-|:white_check_mark:<a href="#timeExprSimplify-ref">timeExprSimplify</a>|Detects manual conversion to milli- or microseconds|
-|:white_check_mark:<a href="#tooManyResultsChecker-ref">tooManyResultsChecker</a>|Detects function with too many results|
-|:white_check_mark:<a href="#typeAssertChain-ref">typeAssertChain</a>|Detects repeated type assertions and suggests to replace them with type switch statement|
-|:white_check_mark:<a href="#typeDefFirst-ref">typeDefFirst</a>|Detects method declarations preceding the type definition itself|
-|:heavy_check_mark:<a href="#typeSwitchVar-ref">typeSwitchVar</a>|Detects type switches that can benefit from type guard clause with variable|
-|:white_check_mark:<a href="#typeUnparen-ref">typeUnparen</a>|Detects unneded parenthesis inside type expressions and suggests to remove them|
-|:heavy_check_mark:<a href="#underef-ref">underef</a>|Detects dereference expressions that can be omitted|
-|:white_check_mark:<a href="#unlabelStmt-ref">unlabelStmt</a>|Detects redundant statement labels|
-|:heavy_check_mark:<a href="#unlambda-ref">unlambda</a>|Detects function literals that can be simplified|
-|:white_check_mark:<a href="#unnamedResult-ref">unnamedResult</a>|Detects unnamed results that may benefit from names|
-|:white_check_mark:<a href="#unnecessaryBlock-ref">unnecessaryBlock</a>|Detects unnecessary braced statement blocks|
-|:heavy_check_mark:<a href="#unslice-ref">unslice</a>|Detects slice expressions that can be simplified to sliced expression itself|
-|:heavy_check_mark:<a href="#valSwap-ref">valSwap</a>|Detects value swapping code that are not using parallel assignment|
-|:white_check_mark:<a href="#whyNoLint-ref">whyNoLint</a>|Ensures that `//nolint` comments include an explanation|
-|:heavy_check_mark:<a href="#wrapperFunc-ref">wrapperFunc</a>|Detects function calls that can be replaced with convenience wrappers|
-|:white_check_mark:<a href="#yodaStyleExpr-ref">yodaStyleExpr</a>|Detects Yoda style expressions and suggests to replace them|/tr>
+|:heavy_check_mark:[assignOp](#assignOp-ref)|Detects assignments that can be simplified by using assignment operators|
+|:white_check_mark:[boolExprSimplify](#boolExprSimplify-ref)|Detects bool expressions that can be simplified|
+|:white_check_mark:[builtinShadow](#builtinShadow-ref)|Detects when predeclared identifiers are shadowed in assignments|
+|:heavy_check_mark:[captLocal](#captLocal-ref)|Detects capitalized names for local variables|
+|:heavy_check_mark:[commentFormatting](#commentFormatting-ref)|Detects comments with non-idiomatic formatting|
+|:white_check_mark:[commentedOutImport](#commentedOutImport-ref)|Detects commented-out imports|
+|:heavy_check_mark:[defaultCaseOrder](#defaultCaseOrder-ref)|Detects when default case in switch isn't on 1st or last position|
+|:white_check_mark:[deferUnlambda](#deferUnlambda-ref)|Detects deferred function literals that can be simplified|
+|:white_check_mark:[docStub](#docStub-ref)|Detects comments that silence go lint complaints about doc-comment|
+|:white_check_mark:[dupImport](#dupImport-ref)|Detects multiple imports of the same package under different aliases|
+|:heavy_check_mark:[elseif](#elseif-ref)|Detects else with nested if statement that can be replaced with else-if|
+|:white_check_mark:[emptyFallthrough](#emptyFallthrough-ref)|Detects fallthrough that can be avoided by using multi case values|
+|:white_check_mark:[emptyStringTest](#emptyStringTest-ref)|Detects empty string checks that can be written more idiomatically|
+|:white_check_mark:[exposedSyncMutex](#exposedSyncMutex-ref)|Detects exposed methods from sync.Mutex and sync.RWMutex|
+|:white_check_mark:[hexLiteral](#hexLiteral-ref)|Detects hex literals that have mixed case letter digits|
+|:white_check_mark:[httpNoBody](#httpNoBody-ref)|Detects nil usages in http.NewRequest calls, suggesting http.NoBody as an alternative|
+|:heavy_check_mark:[ifElseChain](#ifElseChain-ref)|Detects repeated if-else statements and suggests to replace them with switch statement|
+|:white_check_mark:[importShadow](#importShadow-ref)|Detects when imported package names shadowed in the assignments|
+|:white_check_mark:[initClause](#initClause-ref)|Detects non-assignment statements inside if/switch init clause|
+|:white_check_mark:[ioutilDeprecated](#ioutilDeprecated-ref)|Detects deprecated io/ioutil package usages|
+|:white_check_mark:[methodExprCall](#methodExprCall-ref)|Detects method expression call that can be replaced with a method call|
+|:white_check_mark:[nestingReduce](#nestingReduce-ref)|Finds where nesting level could be reduced|
+|:heavy_check_mark:[newDeref](#newDeref-ref)|Detects immediate dereferencing of `new` expressions|
+|:white_check_mark:[octalLiteral](#octalLiteral-ref)|Detects old-style octal literals|
+|:white_check_mark:[paramTypeCombine](#paramTypeCombine-ref)|Detects if function parameters could be combined by type and suggest the way to do it|
+|:white_check_mark:[preferFilepathJoin](#preferFilepathJoin-ref)|Detects concatenation with os.PathSeparator which can be replaced with filepath.Join|
+|:white_check_mark:[ptrToRefParam](#ptrToRefParam-ref)|Detects input and output parameters that have a type of pointer to referential type|
+|:white_check_mark:[redundantSprint](#redundantSprint-ref)|Detects redundant fmt.Sprint calls|
+|:heavy_check_mark:[regexpMust](#regexpMust-ref)|Detects `regexp.Compile*` that can be replaced with `regexp.MustCompile*`|
+|:white_check_mark:[regexpSimplify](#regexpSimplify-ref)|Detects regexp patterns that can be simplified|
+|:white_check_mark:[ruleguard](#ruleguard-ref)|Runs user-defined rules using ruleguard linter|
+|:heavy_check_mark:[singleCaseSwitch](#singleCaseSwitch-ref)|Detects switch statements that could be better written as if statement|
+|:heavy_check_mark:[sloppyLen](#sloppyLen-ref)|Detects usage of `len` when result is obvious or doesn't make sense|
+|:white_check_mark:[stringConcatSimplify](#stringConcatSimplify-ref)|Detects string concat operations that can be simplified|
+|:heavy_check_mark:[switchTrue](#switchTrue-ref)|Detects switch-over-bool statements that use explicit `true` tag value|
+|:white_check_mark:[timeExprSimplify](#timeExprSimplify-ref)|Detects manual conversion to milli- or microseconds|
+|:white_check_mark:[tooManyResultsChecker](#tooManyResultsChecker-ref)|Detects function with too many results|
+|:white_check_mark:[typeAssertChain](#typeAssertChain-ref)|Detects repeated type assertions and suggests to replace them with type switch statement|
+|:white_check_mark:[typeDefFirst](#typeDefFirst-ref)|Detects method declarations preceding the type definition itself|
+|:heavy_check_mark:[typeSwitchVar](#typeSwitchVar-ref)|Detects type switches that can benefit from type guard clause with variable|
+|:white_check_mark:[typeUnparen](#typeUnparen-ref)|Detects unneded parenthesis inside type expressions and suggests to remove them|
+|:heavy_check_mark:[underef](#underef-ref)|Detects dereference expressions that can be omitted|
+|:white_check_mark:[unlabelStmt](#unlabelStmt-ref)|Detects redundant statement labels|
+|:heavy_check_mark:[unlambda](#unlambda-ref)|Detects function literals that can be simplified|
+|:white_check_mark:[unnamedResult](#unnamedResult-ref)|Detects unnamed results that may benefit from names|
+|:white_check_mark:[unnecessaryBlock](#unnecessaryBlock-ref)|Detects unnecessary braced statement blocks|
+|:heavy_check_mark:[unslice](#unslice-ref)|Detects slice expressions that can be simplified to sliced expression itself|
+|:heavy_check_mark:[valSwap](#valSwap-ref)|Detects value swapping code that are not using parallel assignment|
+|:white_check_mark:[whyNoLint](#whyNoLint-ref)|Ensures that `//nolint` comments include an explanation|
+|:heavy_check_mark:[wrapperFunc](#wrapperFunc-ref)|Detects function calls that can be replaced with convenience wrappers|
+|:white_check_mark:[yodaStyleExpr](#yodaStyleExpr-ref)|Detects Yoda style expressions and suggests to replace them|/tr>
 
 ### Checkers from the "performance" group
 
@@ -128,18 +128,18 @@ can make your code run slower than it could be.
 
 |Name|Short description|
 |--- |--- |
-|:white_check_mark:<a href="#appendCombine-ref">appendCombine</a>|Detects `append` chains to the same slice that can be done in a single `append` call|
-|:white_check_mark:<a href="#equalFold-ref">equalFold</a>|Detects unoptimal strings/bytes case-insensitive comparison|
-|:white_check_mark:<a href="#hugeParam-ref">hugeParam</a>|Detects params that incur excessive amount of copying|
-|:white_check_mark:<a href="#indexAlloc-ref">indexAlloc</a>|Detects strings.Index calls that may cause unwanted allocs|
-|:white_check_mark:<a href="#preferDecodeRune-ref">preferDecodeRune</a>|Detects expressions like []rune(s)[0] that may cause unwanted rune slice allocation|
-|:white_check_mark:<a href="#preferFprint-ref">preferFprint</a>|Detects fmt.Sprint(f|ln) calls which can be replaced with fmt.Fprint(f|ln)|
-|:white_check_mark:<a href="#preferStringWriter-ref">preferStringWriter</a>|Detects w.Write or io.WriteString calls which can be replaced with w.WriteString|
-|:white_check_mark:<a href="#preferWriteByte-ref">preferWriteByte</a>|Detects WriteRune calls with byte literal argument and reports to use WriteByte instead|
-|:white_check_mark:<a href="#rangeExprCopy-ref">rangeExprCopy</a>|Detects expensive copies of `for` loop range expressions|
-|:white_check_mark:<a href="#rangeValCopy-ref">rangeValCopy</a>|Detects loops that copy big objects during each iteration|
-|:white_check_mark:<a href="#sliceClear-ref">sliceClear</a>|Detects slice clear loops, suggests an idiom that is recognized by the Go compiler|
-|:white_check_mark:<a href="#stringXbytes-ref">stringXbytes</a>|Detects redundant conversions between string and []byte|/tr>
+|:white_check_mark:[appendCombine](#appendCombine-ref)|Detects `append` chains to the same slice that can be done in a single `append` call|
+|:white_check_mark:[equalFold](#equalFold-ref)|Detects unoptimal strings/bytes case-insensitive comparison|
+|:white_check_mark:[hugeParam](#hugeParam-ref)|Detects params that incur excessive amount of copying|
+|:white_check_mark:[indexAlloc](#indexAlloc-ref)|Detects strings.Index calls that may cause unwanted allocs|
+|:white_check_mark:[preferDecodeRune](#preferDecodeRune-ref)|Detects expressions like []rune(s)[0] that may cause unwanted rune slice allocation|
+|:white_check_mark:[preferFprint](#preferFprint-ref)|Detects `fmt.Sprint(f|ln)` calls which can be replaced with `fmt.Fprint(f|ln)`|
+|:white_check_mark:[preferStringWriter](#preferStringWriter-ref)|Detects w.Write or io.WriteString calls which can be replaced with w.WriteString|
+|:white_check_mark:[preferWriteByte](#preferWriteByte-ref)|Detects WriteRune calls with byte literal argument and reports to use WriteByte instead|
+|:white_check_mark:[rangeExprCopy](#rangeExprCopy-ref)|Detects expensive copies of `for` loop range expressions|
+|:white_check_mark:[rangeValCopy](#rangeValCopy-ref)|Detects loops that copy big objects during each iteration|
+|:white_check_mark:[sliceClear](#sliceClear-ref)|Detects slice clear loops, suggests an idiom that is recognized by the Go compiler|
+|:white_check_mark:[stringXbytes](#stringXbytes-ref)|Detects redundant conversions between string and `[]byte`|
 
 
   <a name="appendAssign-ref"></a>
