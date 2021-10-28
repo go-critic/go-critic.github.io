@@ -2423,12 +2423,17 @@ Detects suspicious http.Error call without following return.
 
 **Before:**
 ```go
-x + string(os.PathSeparator) + y
+if err != nil {
+    http.Error(w, "err", 503)
+}
 ```
 
 **After:**
 ```go
-filepath.Join(x, y)
+if err != nil {
+    http.Error(w, "err", 503)
+    return
+}
 ```
 
 
