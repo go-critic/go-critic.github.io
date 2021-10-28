@@ -2,6 +2,10 @@
 
 The most opinionated Go source code linter.
 
+**IMPORTANT** this repository is just to keep and serve docs on [go-critic.com](https://go-critic.com).
+
+Any documentation changes should be done in [go-critic/go-critic](https://github.com/go-critic/go-critic). Thank you.
+
 ![Logo](https://avatars1.githubusercontent.com/u/40007520?s=400&u=b44287d8845a63fb0102d5259710c11ea367bb13&v=4)
 
 ### Project overview
