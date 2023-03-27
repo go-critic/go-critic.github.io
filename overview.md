@@ -1985,45 +1985,6 @@ N/A
 ```
 
 
-Checker parameters:
-<ul>
-<li>
-
-  `@ruleguard.debug` enable debug for the specified named rules group (default )
-
-</li>
-<li>
-
-  `@ruleguard.disable` comma-separated list of disabled groups or skip empty to enable everything (default )
-
-</li>
-<li>
-
-  `@ruleguard.enable` comma-separated list of enabled groups or skip empty to enable everything (default <all>)
-
-</li>
-<li>
-
-  `@ruleguard.failOn` Determines the behavior when an error occurs while parsing ruleguard files.
-If flag is not set, log error and skip rule files that contain an error.
-If flag is set, the value must be a comma-separated list of error conditions.
-* 'import': rule refers to a package that cannot be loaded.
-* 'dsl':    gorule file does not comply with the ruleguard DSL. (default )
-
-</li>
-<li>
-
-  `@ruleguard.failOnError` deprecated, use failOn param; if set to true, identical to failOn='all', otherwise failOn='' (default false)
-
-</li>
-<li>
-
-  `@ruleguard.rules` comma-separated list of gorule file paths. Glob patterns such as 'rules-*.go' may be specified (default )
-
-</li>
-
-</ul>
-
 ## singleCaseSwitch
 
 [
