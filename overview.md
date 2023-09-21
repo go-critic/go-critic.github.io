@@ -6,7 +6,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 
 ## Checkers
 
-Total number of checks is 106 :rocket:
+Total number of checks is 107 :rocket:
 
 * :heavy_check_mark: checker is enabled by default.
 * :white_check_mark: checker is disabled by default.
@@ -27,6 +27,7 @@ They also detect code that may be correct, but looks suspicious.
 |:white_check_mark:[badLock](#badlock)|Detects suspicious mutex lock/unlock operations|
 |:white_check_mark:[badRegexp](#badregexp)|Detects suspicious regexp patterns|
 |:white_check_mark:[badSorting](#badsorting)|Detects bad usage of sort package|
+|:white_check_mark:[badSyncOnceFunc](#badsynconcefunc)|Detects bad usage of sync.OnceFunc|
 |:white_check_mark:[builtinShadowDecl](#builtinshadowdecl)|Detects top-level declarations that shadow the predeclared identifiers|
 |:heavy_check_mark:[caseOrder](#caseorder)|Detects erroneous case order inside switch statements|
 |:heavy_check_mark:[codegenComment](#codegencomment)|Detects malformed 'code generated' file comments|
@@ -41,7 +42,7 @@ They also detect code that may be correct, but looks suspicious.
 |:white_check_mark:[emptyDecl](#emptydecl)|Detects suspicious empty declarations blocks|
 |:white_check_mark:[evalOrder](#evalorder)|Detects unwanted dependencies on the evaluation order|
 |:heavy_check_mark:[exitAfterDefer](#exitafterdefer)|Detects calls to exit/fatal inside functions that use defer|
-|:white_check_mark:[externalErrorReassign](#externalerrorreassign)|Detects suspicious reassigment of error from another package|
+|:white_check_mark:[externalErrorReassign](#externalerrorreassign)|Detects suspicious reassignment of error from another package|
 |:white_check_mark:[filepathJoin](#filepathjoin)|Detects problems in filepath.Join() function calls|
 |:heavy_check_mark:[flagDeref](#flagderef)|Detects immediate dereferencing of `flag` package pointers|
 |:heavy_check_mark:[flagName](#flagname)|Detects suspicious flag names|
@@ -352,6 +353,29 @@ xs = sort.StringSlice(xs)
 **After:**
 ```go
 sort.Strings(xs)
+```
+
+
+## badSyncOnceFunc
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects bad usage of sync.OnceFunc.
+
+
+
+
+
+**Before:**
+```go
+sync.OnceFunc(foo)()
+```
+
+**After:**
+```go
+fooOnce := sync.OnceFunc(foo); ...; fooOnce()
 ```
 
 
@@ -1108,7 +1132,7 @@ type Foo struct{ ...; mu sync.Mutex; ... }
   **diagnostic**
   **experimental** ]
 
-Detects suspicious reassigment of error from another package.
+Detects suspicious reassignment of error from another package.
 
 
 
