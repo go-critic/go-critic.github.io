@@ -1,0 +1,33 @@
+name: Doc
+
+on:
+  repository_dispatch:
+    types: [update_doc]
+
+jobs:
+  commit_doc:
+    name: commit_doc
+    runs-on: ubuntu-latest
+    env:
+      PATH_OVERVIEW: './overview.md'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Write new doc
+        env:
+          OVERVIEW: ${{ github.event.client_payload.content }}
+        run: |
+          base64 --d <<< "${OVERVIEW}" | xz -d > "${{ env.PATH_OVERVIEW }}"
+
+      - name: Commit into master
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: auto generate doc [bot]
+          file_pattern: ${{ env.PATH_OVERVIEW }}
