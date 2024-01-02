@@ -6,7 +6,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 
 ## Checkers
 
-Total number of checks is 107 :rocket:
+Total number of checks is 106 :rocket:
 
 * :heavy_check_mark: checker is enabled by default.
 * :white_check_mark: checker is disabled by default.
@@ -51,8 +51,8 @@ They also detect code that may be correct, but looks suspicious.
 |:heavy_check_mark:[offBy1](#offby1)|Detects various off-by-one kind of errors|
 |:white_check_mark:[regexpPattern](#regexppattern)|Detects suspicious regexp patterns|
 |:white_check_mark:[returnAfterHttpError](#returnafterhttperror)|Detects suspicious http.Error call without following return|
+|:heavy_check_mark:[sloppyLen](#sloppylen)|Detects usage of `len` when result is obvious or doesn't make sense|
 |:white_check_mark:[sloppyReassign](#sloppyreassign)|Detects suspicious/confusing re-assignments|
-|:white_check_mark:[sloppyTestFuncName](#sloppytestfuncname)|Detects unsupported test and benchmark funcs|
 |:heavy_check_mark:[sloppyTypeAssert](#sloppytypeassert)|Detects redundant type assertions|
 |:white_check_mark:[sortSlice](#sortslice)|Detects suspicious sort.Slice calls|
 |:white_check_mark:[sprintfQuotedString](#sprintfquotedstring)|Detects "%s" formatting directives that can be replaced with %q|
@@ -103,7 +103,6 @@ with another one that is considered more idiomatic or simple.
 |:white_check_mark:[regexpSimplify](#regexpsimplify)|Detects regexp patterns that can be simplified|
 |:white_check_mark:[ruleguard](#ruleguard)|Runs user-defined rules using ruleguard linter|
 |:heavy_check_mark:[singleCaseSwitch](#singlecaseswitch)|Detects switch statements that could be better written as if statement|
-|:heavy_check_mark:[sloppyLen](#sloppylen)|Detects usage of `len` when result is obvious or doesn't make sense|
 |:white_check_mark:[stringConcatSimplify](#stringconcatsimplify)|Detects string concat operations that can be simplified|
 |:white_check_mark:[stringsCompare](#stringscompare)|Detects strings.Compare usage|
 |:heavy_check_mark:[switchTrue](#switchtrue)|Detects switch-over-bool statements that use explicit `true` tag value|
@@ -581,6 +580,16 @@ foo(1, 2)
 foo(1, 2)
 ```
 
+
+Checker parameters:
+<ul>
+<li>
+
+  `@commentedOutCode.minLength` min length of the comment that triggers a warning (default 15)
+
+</li>
+
+</ul>
 
 ## commentedOutImport
 
@@ -2009,6 +2018,45 @@ N/A
 ```
 
 
+Checker parameters:
+<ul>
+<li>
+
+  `@ruleguard.debug` enable debug for the specified named rules group (default )
+
+</li>
+<li>
+
+  `@ruleguard.disable` comma-separated list of disabled groups or skip empty to enable everything (default )
+
+</li>
+<li>
+
+  `@ruleguard.enable` comma-separated list of enabled groups or skip empty to enable everything (default <all>)
+
+</li>
+<li>
+
+  `@ruleguard.failOn` Determines the behavior when an error occurs while parsing ruleguard files.
+If flag is not set, log error and skip rule files that contain an error.
+If flag is set, the value must be a comma-separated list of error conditions.
+* 'import': rule refers to a package that cannot be loaded.
+* 'dsl':    gorule file does not comply with the ruleguard DSL. (default )
+
+</li>
+<li>
+
+  `@ruleguard.failOnError` deprecated, use failOn param; if set to true, identical to failOn='all', otherwise failOn='' (default false)
+
+</li>
+<li>
+
+  `@ruleguard.rules` comma-separated list of gorule file paths. Glob patterns such as 'rules-*.go' may be specified (default )
+
+</li>
+
+</ul>
+
 ## singleCaseSwitch
 
 [
@@ -2062,7 +2110,7 @@ for i := range buf { buf[i] = 0 }
 ## sloppyLen
 
 [
-  **style** ]
+  **diagnostic** ]
 
 Detects usage of `len` when result is obvious or doesn't make sense.
 
@@ -2101,29 +2149,6 @@ if err = f(); err != nil { return err }
 **After:**
 ```go
 if err := f(); err != nil { return err }
-```
-
-
-## sloppyTestFuncName
-
-[
-  **diagnostic**
-  **experimental** ]
-
-Detects unsupported test and benchmark funcs.
-
-
-
-
-
-**Before:**
-```go
-func TessstUnit(t *testing.T)
-```
-
-**After:**
-```go
-func TestUnit(t *testing.T)
 ```
 
 
