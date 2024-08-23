@@ -75,7 +75,7 @@ It's virtually impossible to keep track of all contributions were made.
 1. {**[afiskon/go-elector](https://github.com/afiskon/go-elector)**} [minor style fixes](https://github.com/afiskon/go-elector/pull/1)
 1. {**[google/go-cloud](https://github.com/google/go-cloud)**} [all: simplify and clarify some expressions](https://github.com/google/go-cloud/pull/260)
 1. {**[v2ray/v2ray-core](https://github.com/v2ray/v2ray-core)**} [app/router: rewrite if-else chain to switch](https://github.com/v2ray/v2ray-core/pull/1293)
-1. {**[jinzhu/gorm](https://github.com/jinzhu/gorm)**} [rewrite if-else chain as switch statement](https://github.com/jinzhu/gorm/pull/2121)
+1. {**[jinzhu/gorm](https://github.com/go-gorm/gorm)**} [rewrite if-else chain as switch statement](https://github.com/go-gorm/gorm/pull/2121)
 
 ### [paramTypeCombine](https://go-critic.github.io/overview.html#paramtypecombine)
 
