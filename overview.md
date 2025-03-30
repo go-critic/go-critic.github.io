@@ -6,7 +6,7 @@ This page describes checks supported by [go-critic](https://github.com/go-critic
 
 ## Checkers
 
-Total number of checks is 106 :rocket:
+Total number of checks is 107 :rocket:
 
 * :heavy_check_mark: checker is enabled by default.
 * :white_check_mark: checker is disabled by default.
@@ -37,6 +37,7 @@ They also detect code that may be correct, but looks suspicious.
 |:heavy_check_mark:[dupArg](#duparg)|Detects suspicious duplicated arguments|
 |:heavy_check_mark:[dupBranchBody](#dupbranchbody)|Detects duplicated branch bodies inside conditional statements|
 |:heavy_check_mark:[dupCase](#dupcase)|Detects duplicated case clauses inside switch or select statements|
+|:white_check_mark:[dupOption](#dupoption)|Detects duplicated option function arguments in variadic function calls|
 |:heavy_check_mark:[dupSubExpr](#dupsubexpr)|Detects suspicious duplicated sub-expressions|
 |:white_check_mark:[dynamicFmtString](#dynamicfmtstring)|Detects suspicious formatting strings usage|
 |:white_check_mark:[emptyDecl](#emptydecl)|Detects suspicious empty declarations blocks|
@@ -872,6 +873,36 @@ import(
 ```
 
 
+## dupOption
+
+[
+  **diagnostic**
+  **experimental** ]
+
+Detects duplicated option function arguments in variadic function calls.
+
+
+
+
+
+**Before:**
+```go
+doSomething(name,
+		withWidth(w),
+		withHeight(h),
+		withWidth(w),
+)
+```
+
+**After:**
+```go
+doSomething(name,
+		withWidth(w),
+		withHeight(h),
+)
+```
+
+
 ## dupSubExpr
 
 [
@@ -917,7 +948,7 @@ fmt.Errorf(msg)
 
 **After:**
 ```go
-fmt.Errorf("%s", msg)
+errors.New(msg) or fmt.Errorf("%s", msg)
 ```
 
 
